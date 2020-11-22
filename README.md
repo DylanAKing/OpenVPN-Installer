@@ -1,6 +1,13 @@
 # OpenVPN-Installer
 Single script configuration of two clean ubuntu servers 1x ovpn server and 1x ovpn/easyrsa certificate authority
 
+##Disclaimer!!!##
+This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
+
+© 2002-2019 OpenVPN Inc.
+OpenVPN is a registered trademark of OpenVPN  Inc.
+#################
+
 The goal of this script is to create a simple installation method to install and configure two clean ubuntu servers
 
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
