@@ -33,24 +33,24 @@ run it and add additional 'remote ipaddress/FQDN port' lines as shown below:
 echo INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
-sudo cat > ~/client-configs/base.conf << EOF
-client
-dev tun
-proto udp
-remote $ipv4 1194  < this line takes the ipv4 address of the server provided by the user and sets a default remote server with it on port 1194/udp
-remote ipaddress/FQDN port 
-^ add new lines here replacing the above 'ipaddress/FQDN' and 'port' with the correct info for your setup.(ex: remote 0.0.0.0 1194; remote www.example.com 1194)
-resolve-retry infinite
-user nobody
-group nobody
-persist-key
-persist-tun
-remote-cert-tls server
-cipher AES-256-GCM
-auth sha256
-key-direction 1
-verb 3
-EOF
+#sudo cat > ~/client-configs/base.conf << EOF\
+client\
+dev tun\
+proto udp\
+remote $ipv4 1194 < this line uses the ip address in variable $ipv4 provided during the script and add it as the first default remote server\
+remote ipaddress/FQDN port\
+^ add new lines here replacing the above 'ipaddress/FQDN' and 'port' with the correct info for you.(ex: remote 0.0.0.0 1194; remote www.example.com 1194)\
+resolve-retry infinite\
+user nobody\
+group nobody\
+persist-key\
+persist-tun\
+remote-cert-tls server\
+cipher AES-256-GCM\
+auth sha256\
+key-direction 1\
+verb 3\
+EOF\
 ######################################################
 
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
