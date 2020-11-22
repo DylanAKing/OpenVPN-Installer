@@ -1,17 +1,17 @@
 ##!/bin/bash
 ###############################################################################
-##OpenVPN-Installer/install-ovpn-server.sh									 ##
-##																			 ##
-##Script Author: Dylan King													 ##
-##Script Version: 1.0.0														 ##
-##Script Date: 11/21/2020													 ##
+##OpenVPN-Installer/install-ovpn-server.sh                                   ##
+##                                                                           ##
+##Script Author: Dylan King                                                  ##
+##Script Version: 1.0.0                                                      ##
+##Script Date: 11/21/2020                                                    ##
 ###############################################################################
 #this section setups up the base packages needed for the openvpn server to be #
 #able to create requests send them to an associated Certificate Authority(CA),#
 #this script assumes you have a second ubuntu 20.04 system to be used as a CA #
 #during the installation you will be asked to provide the ipv4 address of the #
 #second system and this script will automatically configure the second system #
-#over SSH																	  #
+#over SSH                                                                     #
 ###############################################################################
 echo INFO: Starting Server configuration...
 
