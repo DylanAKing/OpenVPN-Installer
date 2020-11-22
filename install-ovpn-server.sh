@@ -234,6 +234,9 @@ sudo cp /etc/openvpn/server/server.conf.gz ~/
 ##unzip the example server.conf in the
 sudo gunzip ~/server.conf.gz
 
+##rename server.conf to example-server.conf
+mv ~/server.conf ~/example-server.conf
+
 echo INFO: Creating Server Configuration file...
 
 ##create the trimmed server.conf that will be used by the server
@@ -340,7 +343,7 @@ sudo chmod 644 /etc/default/ufw
 mkdir -p ~/client-configs/files
 
 ##backup the normal base.conf, a trimmed base.conf will be used by this script
-cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/client-configs/base.conf.bak
+cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/example-base.conf
 
 echo INFO: Create the client base configuration...
 
