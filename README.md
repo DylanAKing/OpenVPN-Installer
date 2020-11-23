@@ -75,7 +75,7 @@ Installation instructions:\
 
 SOURCES:\
 this script was derived from two tutorials by Jamon Camisso.\
-below are links to the tutorials:\
+below are links to the tutorials:
 
 OpenVPN Server Configuration:\
 Source published on: 5/6/2020\
