@@ -28,7 +28,7 @@ comments), one of them being '/etc/default/ufw'.
 (while I dont like this approach for editing system files, it was the first solution I thought of that worked,
 if you see this and have an alternative, perhaps not as invasive solution, please let me know.)
 
-  /etc/openvpn/server/server.conf and ~/client-configs/base.conf are two other files that use this method, please refer
+/etc/openvpn/server/server.conf and ~/client-configs/base.conf are two other files that use this method, please refer
 to ~/example-base.conf, and ~/example-server.conf for additonal configuration options and to understand the 
 directives in the stripped down versions.
 
@@ -73,9 +73,9 @@ Installation instructions:\
  2.) if you havent look over the README.md\
  3.) run ./install-ovpn-server.sh and follow the prompts
 
-SOURCES:
-  this script was derived from two tutorials by Jamon Camisso.
-below are links to the tutorials:
+SOURCES:\
+this script was derived from two tutorials by Jamon Camisso.\
+below are links to the tutorials:\
 
 OpenVPN Server Configuration:\
 Source published on: 5/6/2020\
