@@ -3,8 +3,8 @@
 ##OpenVPN-Installer/install-ovpn-server.sh                                   ##
 ##                                                                           ##
 ##Script Author: Dylan King                                                  ##
-##Script Version: 1.0.0                                                      ##
-##Script Date: 11/21/2020                                                    ##
+##Script Version: 1.0.1                                                      ##
+##Version Date: 11/23/2020                                                    ##
 ###############################################################################
 #this script runs commands on 2 systems and assumes you have a second ubuntu  #
 #system/VM to be used as a CA and during the installation you will be asked to#
@@ -401,4 +401,3 @@ echo to do this run: ssh $name@$ipv4ca shutdown now
 ##© 2002-2019 OpenVPN Inc.
 ##OpenVPN is a registered trademark of OpenVPN Inc.
 #######################################################################
-
