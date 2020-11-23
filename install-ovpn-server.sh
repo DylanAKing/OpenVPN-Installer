@@ -114,7 +114,7 @@ ssh $name@$ipv4ca ssh-copy-id $usrname@$ipv4
 echo INFO: Updating Certificate Authority and installing dependencies...
 
 ##update the remote system and install Easy-RSA
-ssh -t $name@$ipv4ca 'sudo apt update; sudo apt upgrade easyrsa -y'
+ssh -t $name@$ipv4ca 'sudo apt update; sudo apt upgrade easy-rsa -y'
 
 echo INFO: Setting up '~/client-config' directory...
 
