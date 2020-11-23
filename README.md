@@ -12,10 +12,10 @@ The goal of this script is to create a simple installation method to install and
 
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
 for more details on the rationale behind some of these commands, or if you encouter any issues while running the 
-install script. through out the installation the script will echo 'info flags' to help you determine the stage of 
-the script, these should aid in where in the script you started encountering issues for easier troubleshooting.
+install script. through out the installation, the script will echo 'INFO:' flags to help you determine the stage of 
+the script and where in the script you started encountering issues for easier troubleshooting.
 
-an example an 'info flag':
+an example 'INFO:' flag:
 ##
 "INFO: Create the client base configuration..."
 ##
@@ -35,8 +35,9 @@ directives in the stripped down versions.
 the install script sets up the client config files with only one remote server with a local address so to enable access from 
 outside of the LAN you need to add additional remote servers to the configuration file, this can be done with either
 a public facing ip address or a Fully Qualified Domain Name(FQDN). you can do this by editing the script before you
-run it and add additional 'remote ipaddress/FQDN port' lines as shown below:
-#####################################################
+run it and add additional 'remote IP/FQDN port' lines as shown below:\
+
+#####################################################\
 echo INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
@@ -44,9 +45,9 @@ echo INFO: Create the client base configuration...
 client\
 dev tun\
 proto udp\
-remote $ipv4 1194 < this line uses the ip address in variable $ipv4 provided during the script and add it as the first default remote server\
-remote ipaddress/FQDN port\
-^ add new lines here replacing the above 'ipaddress/FQDN' and 'port' with the correct info for you.(ex: remote 0.0.0.0 1194; remote www.example.com 1194)\
+remote $ipv4 1194 < this line uses the IP stored in $ipv4, and adds it as the first default remote server on port 1194\
+remote IP/FQDN port\
+^ add new lines above replacing the 'IP/FQDN' & 'port' with your info.(ex: remote 0.0.0.0 1194; remote www.example.com 1194)\
 resolve-retry infinite\
 user nobody\
 group nobody\
@@ -66,14 +67,13 @@ the default values for the script require port 1194 be forwarded to the OpenVPN 
 Installation requirements:\
   -2 clean ubuntu 20.04 systems or Virtual machines with lan access\
   -ip addresses of both systems\
-  -active internet connection
+  -active internet connection\
   -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
   
 Installation instructions:\
  1.) download a zipped copy of the repo, and unzip it\
- 2.) if you havent look over the README.md\
- 3.) make executable with:  chmod +x install-ovpn-server.sh\
- 4.) Start the installation with:  ./install-ovpn-server.sh
+ 2.) make executable with:  chmod +x install-ovpn-server.sh\
+ 3.) Start the installation with:  ./install-ovpn-server.sh
  
 SOURCES:\
 this script was derived from two tutorials by Jamon Camisso.\
