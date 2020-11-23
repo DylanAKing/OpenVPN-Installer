@@ -13,11 +13,14 @@ The goal of this script is to create a simple installation method to install and
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
 for more details on the rationale behind some of these commands, or if you encouter any issues while running the 
 install script. through out the installation, the script will echo 'INFO:' flags to help you determine the stage of 
-the script and where in the script you started encountering issues for easier troubleshooting.
+the script and where in the script you started encountering issues for easier troubleshooting. These flags always
+precede the process they reference. so if an issue occurs during the "SERVER INFO: Configuring Firewall..." for
+example you should find that spot in the script to understand what was happening when the error occured.
 
-an example 'INFO:' flag:
+example 'INFO:' flags:
 ##
-"INFO: Create the client base configuration..."
+"SERVER INFO: (some Text)" < shows that the script is executing commands on the host OpenVPN Server system
+"CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
 ##
 the end result of running the install script is a functional OpenVPN server ready to add clients, and issue .ovpn profiles,
 it does require additional networking configuration to allow for access from outside of the LAN.
