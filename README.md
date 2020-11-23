@@ -28,7 +28,7 @@ comments), one of them being '/etc/default/ufw'.
 (while I dont like this approach for editing system files, it was the first solution I thought of that worked,
 if you see this and have an alternative, perhaps not as invasive solution, please let me know.)
 
-/etc/openvpn/server/server.conf and ~/client-configs/base.conf are two other files that use this method, please refer
+  /etc/openvpn/server/server.conf and ~/client-configs/base.conf are two other files that use this method, please refer
 to ~/example-base.conf, and ~/example-server.conf for additonal configuration options and to understand the 
 directives in the stripped down versions.
 
@@ -63,9 +63,18 @@ EOF\
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
 
-SOURCES:
+Installation requirements:
+  -2 clean ubuntu 20.04 systems or Virtual machines with lan access
+  -ip addresses of both systems
+  -active internet connection
+  
+Installation instructions:
+ 1.) download a zipped copy of the repo, and unzip it
+ 2.) if you havent look over the README.md
+ 3.) run ./install-ovpn-server.sh and follow the prompts
 
-this script was derived from two tutorials by Jamon Camisso.
+SOURCES:
+  this script was derived from two tutorials by Jamon Camisso.
 below are links to the tutorials:
 
 OpenVPN Server Configuration:
