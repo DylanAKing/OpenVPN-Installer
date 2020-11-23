@@ -292,13 +292,16 @@ echo INFO: Backup saved at: /etc/ufw/before.rules.bak
 ##create a copy of "before.rules" in the same directory as a backup
 sudo cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 
+echo Please enter the name of the ethernet interface:
+read if
+
 echo INFO: Creating temporary file to hold new rules...
 
 ##add new rules to a temporary file that will be joined with /etc/ufe/before.rules using cat
 sudo cat > /tmp/temp.txt << EOF 
 *nat
 :POSTROUTING ACCEPT [0:0]
--A POSTROUTING -s 10.8.0.0/8 -o ens18 -j MASQUERADE
+-A POSTROUTING -s 10.8.0.0/8 -o $if -j MASQUERADE
 COMMIT
 EOF
 
