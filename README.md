@@ -67,12 +67,14 @@ Installation requirements:\
   -2 clean ubuntu 20.04 systems or Virtual machines with lan access\
   -ip addresses of both systems\
   -active internet connection
+  -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
   
 Installation instructions:\
  1.) download a zipped copy of the repo, and unzip it\
  2.) if you havent look over the README.md\
- 3.) run ./install-ovpn-server.sh and follow the prompts
-
+ 3.) make executable with:  chmod +x install-ovpn-server.sh\
+ 4.) Start the installation with:  ./install-ovpn-server.sh
+ 
 SOURCES:\
 this script was derived from two tutorials by Jamon Camisso.\
 below are links to the tutorials:
