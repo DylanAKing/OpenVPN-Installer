@@ -63,14 +63,14 @@ EOF\
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
 
-Installation requirements:
-  -2 clean ubuntu 20.04 systems or Virtual machines with lan access
-  -ip addresses of both systems
+Installation requirements:\
+  -2 clean ubuntu 20.04 systems or Virtual machines with lan access\
+  -ip addresses of both systems\
   -active internet connection
   
-Installation instructions:
- 1.) download a zipped copy of the repo, and unzip it
- 2.) if you havent look over the README.md
+Installation instructions:\
+ 1.) download a zipped copy of the repo, and unzip it\
+ 2.) if you havent look over the README.md\
  3.) run ./install-ovpn-server.sh and follow the prompts
 
 SOURCES:
