@@ -77,10 +77,10 @@ SOURCES:
   this script was derived from two tutorials by Jamon Camisso.
 below are links to the tutorials:
 
-OpenVPN Server Configuration:
-Source published on: 5/6/2020
+OpenVPN Server Configuration:\
+Source published on: 5/6/2020\
 https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04
 
-OpenVPN/EASY-RSA configuration:
-Source published on 4/28/2020
+OpenVPN/EASY-RSA configuration:\
+Source published on 4/28/2020\
 https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-ubuntu-20-04+
