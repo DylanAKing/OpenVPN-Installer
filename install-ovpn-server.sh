@@ -6,12 +6,10 @@
 ##Script Version: 1.0.0                                                      ##
 ##Script Date: 11/21/2020                                                    ##
 ###############################################################################
-#this section setups up the base packages needed for the openvpn server to be #
-#able to create requests send them to an associated Certificate Authority(CA),#
-#this script assumes you have a second ubuntu 20.04 system to be used as a CA #
-#during the installation you will be asked to provide the ipv4 address of the #
-#second system and this script will automatically configure the second system #
-#over SSH                                                                     #
+#this script runs commands on 2 systems and assumes you have a second ubuntu  #
+#system/VM to be used as a CA and during the installation you will be asked to#
+#provide login credentials and ipv4 address of the second system and this     #
+#script will automatically configure the second system over SSH               #
 ###############################################################################
 echo INFO: Starting Server configuration...
 
@@ -34,10 +32,10 @@ sudo ufw allow openssh
 sudo ufw allow 1194/udp
 
 ##allow port 80 through the firewall
-sudo ufw allow 80
+#sudo ufw allow 80
 
 ##allow port 443/tcp through the firewall
-sudo ufw allow 443/tcp
+#sudo ufw allow 443/tcp
 
 echo INFO: Generating the Server SSH-Key...
 
@@ -95,8 +93,8 @@ read ipv4ca
 ##earlier this enables heightened security when logging in with ssh
 ##because you do not have to type a password to authenticate,
 ##however, for this to be most effective password-based authentication
-##should be disabled on the systems using the ssh-key based
-##authentication
+##should be disabled on the systems using ssh-key based authentication
+##this script leaves password-based auth. enabled as a fail-safe.
 
 echo INFO: Transferring the Servers SSH-Key to the Certificate Authority...
 
@@ -215,18 +213,15 @@ mkdir -p ~/client-configs/keys
 ##Change the permissions of the '~/client-configs' directory
 chmod -R 700 ~/client-configs
 
-##copy a sample server.conf file to the /etc/openvpn directory
+##copy a sample server.conf file to the /etc/openvpn/server/ directory
 sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/server/
 
-##the resulting server.conf file is only a sample, please refer to
-##this for configuration options the current state of this script 
-##uses a file that is stripped of all unused configuration options
-##and comments for each directive, please refer to an unzipped copy
-##of server.conf for further info on additional configuration options.
-##A zipped copy of server.conf is stored in /etc/openvpn/server, that
-##is the correct directory for the unzipped server.conf when its ready
-##to be used, there is a unzipped copy stored in the home directory of
-##the user running this script for reference.
+##the current state of this script uses a file that is stripped of all 
+##unused configuration options and comments for each directive, please
+##refer to ~/example-server.conf for more information on the directives
+##that are in use and available. A zipped copy of server.conf is stored
+##in /etc/openvpn/server, that is the correct directory for the unzipped
+##server.conf when its ready to be used.
 
 ##copy the example server.conf to the home directory
 sudo cp /etc/openvpn/server/server.conf.gz ~/
@@ -292,7 +287,7 @@ echo INFO: Backup saved at: /etc/ufw/before.rules.bak
 ##create a copy of "before.rules" in the same directory as a backup
 sudo cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 
-echo Please enter the name of the ethernet interface:
+echo Please enter the name of the Server network interface you want to use:
 read if
 
 echo INFO: Creating temporary file to hold new rules...
@@ -374,9 +369,14 @@ echo INFO: Enabling Firewall...
 sudo ufw enable
 
 echo INFO: the installation is now complete!
+echo To start the server;
+echo run: systemctl start openvpn-server@server.service
 echo 
 echo To enable the server to run on startup;
 echo run: systemctl enable openvpn-server@server.service
+echo
+echo To check Openvpn-server status;
+echo run: systemctl status openvpn-server@server.service
 echo
 echo Remeber to shutdown the Certificate Authority when its not actively
 echo being used to sign certificates
@@ -384,6 +384,14 @@ echo to do this run: ssh $name@$ipv4ca shutdown now
 
 ## Sources:
 ################################################################################################################
-##this script was derived from a tutorial by Jamon Camisso.
-##below is a link to the tutorial:
-##https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04 
+##this script was derived from two tutorials by Jamon Camisso.
+##below are links to the tutorials:
+##
+##OpenVPN Server Configuration:
+##Source published on: 5/6/2020
+##https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04
+##
+##OpenVPN/EASY-RSA configuration:
+##Source published on 4/28/2020
+##https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-ubuntu-20-04+
+##
