@@ -50,7 +50,7 @@ mkdir ~/easy-rsa
 ln -s /usr/share/easy-rsa/* ~/easy-rsa
 
 ##change ownership of ~/easy-rsa directory to the non-root user
-chown $usrname ~/easy-rsa
+sudo chown $usrname ~/easy-rsa
 
 ##change permissions on the ~/easy-rsa directory
 chmod 700 ~/easy-rsa
@@ -61,10 +61,13 @@ cd ~/easy-rsa
 echo SERVER INFO: Creating the Servers vars file...
 
 ##create the 'vars' file for the server
-cat > ~/easy-rsa/vars << EOF
+cat > /tmp/vars << EOF
 set_var EASYRSA_ALGO "ec"
 set_var EASYRSA_DIGEST "sha512"
 EOF
+
+#move the newly created vars file to the correct location
+mv /tmp/vars ~/easy-rsa/
 
 echo SERVER INFO: Initializing Public Key Infrastructure...
 
@@ -384,18 +387,21 @@ systemctl status openvpn-server@server.service
 ##uncomment to enable OpenVPN to run on startup
 #sudo systemctl enable openvpn-server@server.service
 
-echo << EOF 
-INFO: the installation is now complete!
+
+echo 'INFO: the installation is now complete!
+
 To start the server;
 run: systemctl start openvpn-server@server.service
+
 To enable the server to run on startup;
 run: systemctl enable openvpn-server@server.service
+
 To check Openvpn-server status;
 run: systemctl status openvpn-server@server.service
+
 Remeber to shutdown the Certificate Authority when its not actively
-being used to sign certificates
-to do this run: ssh $name@$ipv4ca shutdown now
-EOF
+being used to sign certificates for added security 
+to do this remotely run: ssh $name@$ipv4ca shutdown now'
 
 ## Sources:
 ################################################################################################################
