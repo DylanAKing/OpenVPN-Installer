@@ -15,10 +15,10 @@ mv /tmp/$name.crt $KEY_DIR
 ########################################################################
 #this section of code is borrowed from the tutorial on configuring the #
 #OpenVPN Server, please refer to the README.md for a hyperlink to the  #
-#afformentioned tutorial, this one modification from original and      # 
-#removes the arguement from the scripts call command replacing it with #
-#a prompt for call consistency between this script and other custom    #
-#scripts for managing OpenVPN that were packaged with                  #
+#afformentioned tutorial, there is one modification from the original  # 
+#that removes the arguement from the scripts call command replacing it #
+#with a prompt for call consistency between this script and other      #
+#custom scripts for managing OpenVPN that were packaged with           #
 #DylanAKing/OVPN-Installer                                             #
 
 #declaring filesystem paths as easily called variables
