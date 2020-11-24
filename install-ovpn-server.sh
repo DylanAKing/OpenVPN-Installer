@@ -21,7 +21,7 @@ read usrname
 echo SERVER INFO: Updating Sever system and installing dependencies...
 
 ##update host
-sudo apt update && sudo apt upgrade ssh openvpn easy-rsa -y
+sudo apt update && sudo apt upgrade ssh openvpn easy-rsa ufw -y
 
 echo SERVER INFO: Configuring Firewall...
 
@@ -116,7 +116,7 @@ ssh $name@$ipv4ca ssh-copy-id $usrname@$ipv4
 echo CA INFO: Updating Certificate Authority and installing dependencies...
 
 ##update the remote system and install Easy-RSA
-ssh -t $name@$ipv4ca 'sudo apt update; sudo apt upgrade easy-rsa -y'
+ssh -t $name@$ipv4ca 'sudo apt update; sudo apt upgrade easy-rsa ufw -y'
 
 echo CA INFO: Setting up '~/easy-rsa' directory...
 
