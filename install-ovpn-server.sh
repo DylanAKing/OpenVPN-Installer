@@ -113,6 +113,8 @@ echo CA INFO: Transferring Certificate Authority SSH-Key to the Server...
 ##transfer the CA's ssh-key to the Server
 ssh $name@$ipv4ca ssh-copy-id $usrname@$ipv4
 
+sleep 3
+
 echo CA INFO: Updating Certificate Authority and installing dependencies...
 
 ##update the remote system and install Easy-RSA
