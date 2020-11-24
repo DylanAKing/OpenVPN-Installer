@@ -1,6 +1,7 @@
 # OpenVPN-Installer
 Single script configuration of two clean ubuntu servers 1x ovpn server and 1x ovpn/easyrsa certificate authority
 
+Linux Distrobution Compatibility:
 | Distro | Version | Supported          |
 | ------ | ------- | ------------------ |
 | Ubuntu |  20.04  | :white_check_mark: |
@@ -12,8 +13,6 @@ This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.\
 #################
-
-The goal of this script is to create a simple installation method to install and configure two clean ubuntu servers
 
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
 for more details on the rationale behind some of these commands, or if you encouter any issues while running the 
@@ -77,10 +76,11 @@ Installation requirements:\
   -ip addresses of both systems\
   -active internet connection\
   -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
+  -EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)
   
 Installation instructions:\
  1.) download a zipped copy of the repo, and unzip it\
- 2.) make executable with:  chmod +x install-ovpn-server.sh\
+ 2.) make executable with:  chmod +x ../install-ovpn-server.sh\
  3.) Start the installation with:  ./install-ovpn-server.sh
  
 SOURCES:\
