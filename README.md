@@ -16,11 +16,11 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 #################
 
 Installation instructions\
-If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion\
+If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
   - Make sure you have these packages installed:\
     -ufw\
     -sudo\
-    -unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)\
+    -unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
    
   - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
     the way i know to do this is by adding the following line to '/etc/sudoers'\
@@ -29,12 +29,13 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     and placing this line below the corresponding line for ROOT.\
     Please inform me if there is a better way to acheive this.
   
-  - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install\
+  - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
+  just follow the ubuntu instructions below
 
-If your running ubuntu 20.04\
+If your running ubuntu 20.04, or completed the steps outlined aboved\
   :1: Clone this Repository and Extract it\
   2.) Make the install script executable with:  chmod +x ../install-ovpn-server.sh\
-  3.) Start the installation with:  ./install-ovpn-server.sh\
+  3.) Start the installation with:  ./install-ovpn-server.sh
  
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
 for more details on the rationale behind some of these commands, or if you encouter any issues while running the 
@@ -64,7 +65,7 @@ directives in the stripped down versions.
 the install script sets up the client config files with only one remote server with a local address so to enable access from 
 outside of the LAN you need to add additional remote servers to the configuration file, this can be done with either
 a public facing ip address or a Fully Qualified Domain Name(FQDN). you can do this by editing the script before you
-run it and add additional 'remote IP/FQDN port' lines as shown below:\
+run it and add additional 'remote IP/FQDN port' lines as shown below:
 
 #####################################################\
 echo INFO: Create the client base configuration...
@@ -97,12 +98,12 @@ Installation requirements:\
   -2 clean ubuntu 20.04 systems or Virtual machines with lan access\
   -ip addresses of both systems\
   -active internet connection\
-  -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)\
+  -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
 
 Package Dependencies:\
   -EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)\
   -Sudo\
-  -ufw\
+  -ufw
   
 
 SOURCES:\
