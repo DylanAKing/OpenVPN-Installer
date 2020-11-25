@@ -6,6 +6,7 @@ Linux Distrobution Compatibility:
 | ------ | ------- | ------------------ |
 | Ubuntu |  20.04  | :heavy_check_mark: |
 |        | < 18.04 | :x:                |
+| Debian |  10.6.0 | :heavy_check_mark: |
 
 ##Disclaimer!!!##\
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
