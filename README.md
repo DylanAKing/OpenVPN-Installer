@@ -4,9 +4,9 @@ Single script configuration of two clean ubuntu servers 1x ovpn server and 1x ov
 Linux Distrobution Compatibility:
 | Distro | Version | Supported          |
 | ------ | ------- | ------------------ |
-| Ubuntu |  20.04  | :heavy_check_mark: |
+| Ubuntu |  20.04  | :white_check_mark: |
 |        | < 18.04 | :x:                |
-| Debian |  10.6.0 | :heavy_check_mark: |
+| Debian |  10.6.0 | :white_check_mark: |
 
 ##Disclaimer!!!##\
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
