@@ -1,7 +1,7 @@
 # OpenVPN-Installer
 Single script configuration of two clean ubuntu servers 1x ovpn server and 1x ovpn/easyrsa certificate authority
 
-Linux Distrobution Compatibility:
+Linux Distro Compatibility:
 | Distro | Version | Supported          |
 | ------ | ------- | ------------------ |
 | Ubuntu |  20.04  | :white_check_mark: |
