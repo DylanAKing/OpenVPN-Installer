@@ -10,7 +10,7 @@ echo Please enter the common-name of the client:
 read name
 
 #move the signed certificate to the keys directory
-mv /tmp/$name.crt `/client-configs/keys
+mv /tmp/$name.crt ~/client-configs/keys
 
 ########################################################################
 #this section of code is borrowed from the tutorial on configuring the #
