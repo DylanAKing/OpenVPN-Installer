@@ -210,7 +210,7 @@ sudo cp /tmp/{server.crt,ca.crt} /etc/openvpn/server/
 echo SERVER INFO: Generating TLS-Crypt Pre-Shared Key...
 
 ##generate the tls-crypt pre-shared key
-openvpn --genkey --secret ta.key
+sudo openvpn --genkey --secret ta.key
 
 ##copy the pre-shared key to the '/etc/openvpn/server' directory
 sudo cp ta.key /etc/openvpn/server/
@@ -219,7 +219,7 @@ sudo cp ta.key /etc/openvpn/server/
 mkdir -p ~/client-configs/keys
 
 ##Change the permissions of the '~/client-configs' directory
-chmod -R 700 ~/client-configs
+sudo chmod -R 700 ~/client-configs
 
 ##copy a sample server.conf file to the /etc/openvpn/server/ directory
 sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/server/
