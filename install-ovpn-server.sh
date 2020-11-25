@@ -3,8 +3,8 @@
 ##OpenVPN-Installer/install-ovpn-server.sh                                   ##
 ##                                                                           ##
 ##Script Author: Dylan A King                                                ##
-##Script Version: 1.0.2                                                      ##
-##Version Date: 11/23/2020                                                   ##
+##Script Version: 1.0.3-alpha                                                ##
+##Version Date: xx/xx/2020                                                   ##
 ###############################################################################
 #this script runs commands on 2 systems and assumes you have a second ubuntu  #
 #system/VM to be used as a CA and during the installation you will be asked   #
