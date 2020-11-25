@@ -9,8 +9,8 @@
 echo Please enter the common-name of the client:
 read name
 
-#move the signed certificate to the keyts directory
-mv /tmp/$name.crt $KEY_DIR
+#move the signed certificate to the keys directory
+mv /tmp/$name.crt `/client-configs/keys
 
 ########################################################################
 #this section of code is borrowed from the tutorial on configuring the #
@@ -42,7 +42,6 @@ cat ${BASE_CONFIG} \
     > ${OUTPUT_DIR}/$name.ovpn
 ########################################################################
 
-echo << EOF
+echo '
 Your OVPN Profile is stored at:
-~/client-configs/files/$name.ovpn
-EOF
+~/client-configs/files/'$name'.ovpn'
