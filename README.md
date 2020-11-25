@@ -1,5 +1,5 @@
 # OpenVPN-Installer
-Single script configuration of two clean ubuntu servers 1x ovpn server and 1x ovpn/easyrsa certificate authority
+Single script configuration of two clean servers/VMs into 1x OVPN server and 1x OVPN/EasyRSA certificate authority
 
 Linux Distro Compatibility:
 
