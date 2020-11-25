@@ -215,6 +215,9 @@ sudo openvpn --genkey --secret ta.key
 ##copy the pre-shared key to the '/etc/openvpn/server' directory
 sudo cp ta.key /etc/openvpn/server/
 
+#move other key to '~/client-configs/keys' directory
+sudo mv ta.key ~/client-configs/keys/
+
 ##make the '/client-configs' directory and the 'client-configs/keys' sub-directory
 mkdir -p ~/client-configs/keys
 
@@ -401,7 +404,7 @@ run: systemctl status openvpn-server@server.service
 
 Remeber to shutdown the Certificate Authority when its not actively
 being used to sign certificates for added security 
-to do this remotely run: ssh $name@$ipv4ca shutdown now'
+to do this remotely run: ssh '$name'@'$ipv4ca' shutdown now'
 
 ## Sources:
 ################################################################################################################
