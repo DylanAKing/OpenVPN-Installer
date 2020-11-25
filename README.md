@@ -4,7 +4,7 @@ Single script configuration of two clean ubuntu servers 1x ovpn server and 1x ov
 Linux Distrobution Compatibility:
 | Distro | Version | Supported          |
 | ------ | ------- | ------------------ |
-| Ubuntu |  20.04  | :white_check_mark: |
+| Ubuntu |  20.04  | :heavy_check_mark: |
 |        | < 18.04 | :x:                |
 
 ##Disclaimer!!!##\
@@ -75,8 +75,12 @@ Installation requirements:\
   -2 clean ubuntu 20.04 systems or Virtual machines with lan access\
   -ip addresses of both systems\
   -active internet connection\
-  -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
-  -EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)
+  -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)\
+
+Package Dependencies:\
+  -EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)\
+  -Sudo\
+  -ufw\
   
 Installation instructions:\
  1.) download a zipped copy of the repo, and unzip it\
