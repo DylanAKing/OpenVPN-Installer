@@ -3,19 +3,19 @@ Single script configuration of two clean servers/VMs into 1x OVPN server and 1x 
 
 Linux Distro Compatibility:
 
-|  Latest Version  |       1.0.2        |
+|  Latest Version  |    1.0.3-alpha     |
 | ---------------- | -------------------|
 
-| Distro | Version | Supported          |
+| Distro | Version |     Supported?     |
 | ------ | ------- | ------------------ |
 | Ubuntu |  20.04  | :white_check_mark: |
 |        | < 18.04 | :x:                |
 | Debian |  10.6.0 | :white_check_mark: |
-|  Arch  | rolling |   in development   |
+|  Arch  | Rolling |   In Development   |
 
 ##Disclaimer!!!##\
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
-\
+
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.\
 #################
