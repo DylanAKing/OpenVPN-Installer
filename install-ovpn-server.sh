@@ -394,7 +394,7 @@ sudo systemctl start openvpn-server@server.service
 #make the managment scripts executable
 chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
 
-echo 'INFO: The installation is now complete and 
+echo 'INFO: The installation is now complete!
 
 To start the server;
 run: systemctl start openvpn-server@server.service
