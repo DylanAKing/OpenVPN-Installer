@@ -403,6 +403,12 @@ echo SERVER INFO: Making Management scripts Executable...
 #make the managment scripts executable
 chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
 
+#transfer the signreq.sh script to the CA
+scp ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/signreq.sh $name@$ipv4ca:/tmp/
+
+# move the signreq.sh script on the CA from /tmp to ~/
+ssh $name@$ipv4ca mv /tmp/signreq.sh ~/
+
 echo 'INFO: The installation is now complete!
 
 To start the server;
