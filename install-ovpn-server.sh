@@ -113,10 +113,11 @@ ssh $name@$ipv4ca ssh-keygen -b 4096
 
 echo CA INFO: Transferring Certificate Authority SSH-Key to the Server...
 
+echo DEBUG##########################################
+sleep 5
+
 ##transfer the CA's ssh-key to the Server
 ssh $name@$ipv4ca ssh-copy-id $usrname@$ipv4
-
-sleep 3
 
 echo CA INFO: Updating Certificate Authority and installing dependencies...
 
@@ -177,9 +178,9 @@ cd ~/easy-rsa
 ##generate the server`s request and key
 ./easyrsa gen-req server nopass
 
-echo SERVER INFO: Copying Public key to the private key directory...
+echo SERVER INFO: Copying Server Public Key to '/etc/openvpn/server/'...
 
-##copy server key to the '~/easy-rsa/pki/private' directory 
+##copy server key to the '/etc/openvpn/server' directory 
 sudo cp ~/easy-rsa/pki/private/server.key /etc/openvpn/server/
 
 echo SERVER INFO: Transferring the Servers Request to the Certificate Authority...
@@ -207,6 +208,12 @@ scp $name@$ipv4ca:/tmp/*.crt /tmp/
 ##copy the server and CA certificates and place them in the '/etc/openvpn/server' directory
 sudo cp /tmp/{server.crt,ca.crt} /etc/openvpn/server/
 
+##make the '/client-configs' directory and the 'client-configs/keys' sub-directory
+mkdir -p ~/client-configs/keys
+
+##copy the CA certificate and place it in the '~/client-configs/keys/' directory
+sudo cp /etc/openvpn/server/ca.crt ~/client-configs/keys
+
 echo SERVER INFO: Generating TLS-Crypt Pre-Shared Key...
 
 #move to `/easy-rsa' directory
@@ -218,11 +225,8 @@ sudo openvpn --genkey --secret ta.key
 ##copy the pre-shared key to the '/etc/openvpn/server' directory
 sudo cp ta.key /etc/openvpn/server/
 
-#move other key to '~/client-configs/keys' directory
+#copy ta.key to '~/client-configs/keys' directory
 sudo mv ta.key ~/client-configs/keys/
-
-##make the '/client-configs' directory and the 'client-configs/keys' sub-directory
-mkdir -p ~/client-configs/keys
 
 ##Change the permissions of the '~/client-configs' directory
 sudo chmod -R 700 ~/client-configs
@@ -353,7 +357,7 @@ sudo mv /tmp/ufw /etc/default/
 sudo chmod 644 /etc/default/ufw
 
 ##make '~/client-configs/files' directory
-mkdir -p ~/client-configs/files
+mkdir ~/client-configs/files
 
 ##backup the normal base.conf, a trimmed base.conf will be used by this script
 cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/example-base.conf
