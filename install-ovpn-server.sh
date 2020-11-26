@@ -209,6 +209,9 @@ sudo cp /tmp/{server.crt,ca.crt} /etc/openvpn/server/
 
 echo SERVER INFO: Generating TLS-Crypt Pre-Shared Key...
 
+#move to `/easy-rsa' directory
+cd ~/easy-rsa
+
 ##generate the tls-crypt pre-shared key
 sudo openvpn --genkey --secret ta.key
 
@@ -381,17 +384,17 @@ echo SERVER INFO: Enabling Firewall...
 sudo ufw enable
 
 echo SERVER INFO: Starting OpenVPN Server...
+
 #start OpenVPN Server
 sudo systemctl start openvpn-server@server.service
-
-#display the status of the OpenVPN server
-systemctl status openvpn-server@server.service
 
 ##uncomment to enable OpenVPN to run on startup
 #sudo systemctl enable openvpn-server@server.service
 
+#make the managment scripts executable
+chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
 
-echo 'INFO: the installation is now complete!
+echo 'INFO: The installation is now complete and 
 
 To start the server;
 run: systemctl start openvpn-server@server.service
@@ -405,6 +408,12 @@ run: systemctl status openvpn-server@server.service
 Remeber to shutdown the Certificate Authority when its not actively
 being used to sign certificates for added security 
 to do this remotely run: ssh '$name'@'$ipv4ca' shutdown now'
+
+echo INFO: Checking Openvpn-server@server.service status...
+echo INFO: Press 'q' to quit
+
+#display the status of the OpenVPN server
+systemctl status openvpn-server@server.service
 
 ## Sources:
 ################################################################################################################
