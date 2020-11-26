@@ -36,10 +36,10 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
   - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
   just follow the ubuntu instructions below
 
-If your running ubuntu 20.04, or completed the steps outlined aboved\
-  :one: Clone this Repository and Extract it\
-  :two: Make the install script executable with:  chmod +x ../install-ovpn-server.sh\
-  :three: Start the installation with:  ./install-ovpn-server.sh
+If your running ubuntu 20.04, or completed the steps outlined aboved:\
+  - Clone this Repository and Extract it\
+  - Make the install script executable with:  chmod +x ../install-ovpn-server.sh\
+  - Start the installation with:  ./install-ovpn-server.sh
  
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
 for more details on the rationale behind some of these commands, or if you encouter any issues while running the 
