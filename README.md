@@ -27,18 +27,19 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
    
   - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
-    the way i know to do this is by adding the following line to '/etc/sudoers'\
-      " $username ALL=(ALL:ALL) ALL "\
-    replacing $username with the name on the non root user,\ 
-    and placing this line below the corresponding line for ROOT.\
+    the way i know to do this is by adding the following line to '/etc/sudoers'
+    
+      $username ALL=(ALL:ALL) ALL
+      
+    replacing $username with the name on the non root user and placing this line below the corresponding line for ROOT\
     Please inform me if there is a better way to acheive this.
   
   - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
   just follow the ubuntu instructions below
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:\
-  - Clone this Repository and Extract it\
-  - Make the install script executable with:  chmod +x ../install-ovpn-server.sh\
+  - Clone this Repository and Extract it
+  - Make the install script executable with:  chmod +x ../install-ovpn-server.sh
   - Start the installation with:  ./install-ovpn-server.sh
  
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
@@ -48,11 +49,10 @@ the script and where in the script you started encountering issues for easier tr
 precede the process they reference. so if an issue occurs during the "SERVER INFO: Configuring Firewall..." for
 example you should find that spot in the script to understand what was happening when the error occured.
 
-example 'INFO:' flags:
-##
-"SERVER INFO: (some Text)" < shows that the script is executing commands on the host OpenVPN Server system
-"CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
-##
+Example 'INFO:' flags:
+  - "SERVER INFO: (some Text)" < shows that the script is executing commands on the host OpenVPN Server system
+  - "CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
+  
 the end result of running the install script is a functional OpenVPN server ready to add clients, and issue .ovpn profiles,
 it does require additional networking configuration to allow for access from outside of the LAN.
 
@@ -98,16 +98,16 @@ EOF\
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
 
-Installation requirements:\
-  -2 clean ubuntu 20.04 systems or Virtual machines with lan access\
-  -ip addresses of both systems\
-  -active internet connection\
-  -identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
+Installation requirements:
+  - 2 clean ubuntu 20.04 systems or Virtual machines with lan access
+  - ip addresses of both systems
+  - active internet connection
+  - identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
 
-Package Dependencies:\
-  -EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)\
-  -Sudo\
-  -ufw
+Package Dependencies:
+  - EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)
+  - Sudo
+  - ufw
   
 
 SOURCES:\
