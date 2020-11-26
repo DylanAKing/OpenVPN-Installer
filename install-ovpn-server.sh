@@ -211,6 +211,9 @@ sudo cp /tmp/{server.crt,ca.crt} /etc/openvpn/server/
 ##make the '/client-configs' directory and the 'client-configs/keys' sub-directory
 mkdir -p ~/client-configs/keys
 
+##Change the permissions of the '~/client-configs' directory
+sudo chmod -R 700 ~/client-configs
+
 ##copy the CA certificate and place it in the '~/client-configs/keys/' directory
 sudo cp /etc/openvpn/server/ca.crt ~/client-configs/keys
 
@@ -229,10 +232,7 @@ sudo cp ta.key /etc/openvpn/server/
 sudo mv ta.key ~/client-configs/keys/
 
 ##Change ownership of the ca.crt and ta.key to the nonroot user
-sudo chown $usrname /client-configs/keys/{ta.key, ca.crt}
-
-##Change the permissions of the '~/client-configs' directory
-sudo chmod -R 700 ~/client-configs
+sudo chown -R $usrname /client-configs/keys/
 
 ##copy a sample server.conf file to the /etc/openvpn/server/ directory
 sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/server/
