@@ -398,8 +398,10 @@ sudo systemctl start openvpn-server@server.service
 ##uncomment to enable OpenVPN to run on startup
 #sudo systemctl enable openvpn-server@server.service
 
+echo SERVER INFO: Making Management scripts Executable...
+
 #make the managment scripts executable
-chmod +x ~/OpenVPN-Installer*/OpenVpn-Management-Scripts/*.sh
+chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
 
 echo 'INFO: The installation is now complete!
 
