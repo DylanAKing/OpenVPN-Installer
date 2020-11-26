@@ -232,7 +232,7 @@ sudo cp ta.key /etc/openvpn/server/
 sudo mv ta.key ~/client-configs/keys/
 
 ##Change ownership of the ca.crt and ta.key to the nonroot user
-sudo chown -R $usrname /client-configs/keys/
+sudo chown -R $usrname ~/client-configs/keys/
 
 ##copy a sample server.conf file to the /etc/openvpn/server/ directory
 sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/server/
