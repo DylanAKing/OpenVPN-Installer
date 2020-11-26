@@ -3,8 +3,8 @@ Single script configuration of two clean servers/VMs into 1x OVPN server and 1x 
 
 Linux Distro Compatibility:
 
-|  Latest Version  |    1.0.3-alpha     |
-| ---------------- | -------------------|
+| Latest Version | 1.0.3 |
+| -------------- | ----- |
 
 | Distro | Version |     Supported?     |
 | ------ | ------- | ------------------ |
