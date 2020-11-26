@@ -23,7 +23,6 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
   - Make sure you have these packages installed:
-    - ufw
     - sudo
     - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
    
