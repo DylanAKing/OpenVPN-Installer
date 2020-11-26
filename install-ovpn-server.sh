@@ -6,9 +6,9 @@
 ##Script Version: 1.0.3-alpha                                                ##
 ##Version Date: 11/26/2020                                                   ##
 ###############################################################################
-#this script runs commands on 2 systems and assumes you have a second ubuntu  #
-#system/VM to be used as a CA and during the installation you will be asked   #
-#to provide login credentials and ipv4 address of the second system and this  #
+#this script runs commands on 2 systems and assumes you have a second system  #
+#or VM to be used as a CA and during the installation you will be asked to    #
+# provide login credentials and ipv4 address of the second system and this    #
 #script will automatically configure the second system over SSH               #
 ###############################################################################
 echo INFO: Starting Server configuration...
@@ -83,13 +83,13 @@ echo INFO: Finished initial configuration of the server system.
 
 echo INFO: Starting Certificate Authority configuration...
 
-echo Please enter the username for the second ubuntu system:
+echo Please enter the username for the second system or VM:
 read name
 
-echo Please enter the ipv4 address of the server system:
+echo Please enter the ipv4 address of the first system/Server system:
 read ipv4
 
-echo Please enter the ipv4 address of the CA system:
+echo Please enter the ipv4 address of the second system/Certificate Authority system:
 read ipv4ca
 
 ##here we use ssh-copy-id to securely transfer the ssh-key we generated
