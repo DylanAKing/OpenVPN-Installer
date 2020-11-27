@@ -99,10 +99,10 @@ After you add new remote server addresses you still will need to port foward the
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
 
 Installation requirements:
-  - 2 clean ubuntu 20.04 systems or Virtual machines with lan access
+  - 2 clean Server systems or Virtual machines with lan access
   - ip addresses of both systems
-  - active internet connection
-  - identify the network interface to use on the Server(ex: en0, eth0, ens18,...)
+  - active internet connection on one system and lan acess to the other
+  - identity of the network interface to use on the Server(ex: en0, eth0, ens18,...)
 
 Package Dependencies:
   - EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)
