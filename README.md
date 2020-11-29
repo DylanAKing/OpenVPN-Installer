@@ -82,7 +82,8 @@ outside of the LAN you need to add additional remote servers to the configuratio
 a public facing ip address or a Fully Qualified Domain Name(FQDN). you can do this by editing the script before you
 run it and add additional 'remote IP/FQDN port' lines as shown below:
 
-#######\
+#######
+
 echo INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
@@ -103,7 +104,8 @@ cipher AES-256-GCM\
 auth sha256\
 key-direction 1\
 verb 3\
-EOF\
+EOF
+
 #######
 
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
