@@ -22,19 +22,19 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
-- Make sure you have these packages installed:
+  - Make sure you have these packages installed:
 
-      - sudo
+        - sudo
     
-      - ufw
+        - ufw
     
-      - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
+        - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
    
    
-- Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
+  - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
     the way i know to do this is by adding the following line to '/etc/sudoers'
     
-      $username ALL=(ALL:ALL) ALL
+        $username ALL=(ALL:ALL) ALL
       
     replacing $username with the name on the non root user and placing this line below the corresponding line for ROOT\
     Please inform me if there is a better way to acheive this.
@@ -59,8 +59,12 @@ precede the process they reference. so if an issue occurs during the "SERVER INF
 example you should find that spot in the script to understand what was happening when the error occured.
 
 Example 'INFO:' flags:
-  - "SERVER INFO: (some Text)" < shows that the script is executing commands on the host OpenVPN Server system
-  - "CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
+
+    - "SERVER INFO: (some Text)" < shows that the script is executing commands on the host OpenVPN Server system
+    
+    
+    - "CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
+  
   
 the end result of running the install script is a functional OpenVPN server ready to add clients, and issue .ovpn profiles,
 it does require additional networking configuration to allow for access from outside of the LAN.
@@ -108,17 +112,23 @@ After you add new remote server addresses you still will need to port foward the
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
 
 Installation requirements:
-  - 2 clean Server systems or Virtual machines with lan access
-  - ip addresses of both systems
-  - active internet connection on one system and lan acess to the other
-  - identity of the network interface to use on the Server(ex: en0, eth0, ens18,...)
+
+    - 2 clean Server systems or Virtual machines with lan access
+    
+    - ip addresses of both systems
+    
+    - active internet connection on one system and lan acess to the other
+    
+    - identity of the network interface to use on the Server(ex: en0, eth0, ens18,...)
 
 Package Dependencies:
-  - EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)
-  - Sudo
-  - ufw
-  
 
+    - EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible)
+    
+    - Sudo
+    
+    - ufw
+  
 SOURCES:\
 this script was derived from two tutorials by Jamon Camisso.\
 below are links to the tutorials:
