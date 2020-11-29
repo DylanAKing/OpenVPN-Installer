@@ -23,7 +23,7 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
 
-  - Make sure you have these packages installed:
+    - Make sure you have these packages installed:
 
         - sudo
     
@@ -31,7 +31,7 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     
         - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
-  - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
+    - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
     the way i know to do this is by adding the following line to '/etc/sudoers'
     
         $username ALL=(ALL:ALL) ALL
@@ -39,8 +39,8 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     replacing $username with the name on the non root user and placing this line below the corresponding line for ROOT\
     Please inform me if there is a better way to acheive this.
   
-  - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
-just follow the ubuntu instructions below
+    - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
+    just follow the ubuntu instructions below
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
 
@@ -82,7 +82,7 @@ outside of the LAN you need to add additional remote servers to the configuratio
 a public facing ip address or a Fully Qualified Domain Name(FQDN). you can do this by editing the script before you
 run it and add additional 'remote IP/FQDN port' lines as shown below:
 
-#####################################################\
+#######\
 echo INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
@@ -104,7 +104,7 @@ auth sha256\
 key-direction 1\
 verb 3\
 EOF\
-######################################################
+#######
 
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
