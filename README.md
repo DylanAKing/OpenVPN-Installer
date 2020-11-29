@@ -23,12 +23,12 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
 - Make sure you have these packages installed:
-  
-    - sudo
+
+      - sudo
     
-    - ufw
+      - ufw
     
-    - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
+      - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
    
    
 - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
@@ -44,11 +44,11 @@ just follow the ubuntu instructions below
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
 
-  - Clone this Repository and Extract it
+    - Clone this Repository and Extract it
   
-  - Make the install script executable with:  chmod +x ../install-ovpn-server.sh
+    - Make the install script executable with:  chmod +x ../install-ovpn-server.sh
   
-  - Start the installation with:  ./install-ovpn-server.sh
+    - Start the installation with:  ./install-ovpn-server.sh
  
  
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
