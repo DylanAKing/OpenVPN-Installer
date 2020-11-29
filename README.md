@@ -18,7 +18,6 @@ This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
 
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.\
-######
 
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
@@ -82,8 +81,6 @@ outside of the LAN you need to add additional remote servers to the configuratio
 a public facing ip address or a Fully Qualified Domain Name(FQDN). you can do this by editing the script before you
 run it and add additional 'remote IP/FQDN port' lines as shown below:
 
-######
-
 echo INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
@@ -105,8 +102,6 @@ auth sha256\
 key-direction 1\
 verb 3\
 EOF
-
-######
 
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
