@@ -22,6 +22,7 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
+
   - Make sure you have these packages installed:
 
         - sudo
@@ -29,8 +30,7 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
         - ufw
     
         - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
-   
-   
+    
   - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
     the way i know to do this is by adding the following line to '/etc/sudoers'
     
@@ -39,7 +39,7 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     replacing $username with the name on the non root user and placing this line below the corresponding line for ROOT\
     Please inform me if there is a better way to acheive this.
   
-- With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
+  - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
 just follow the ubuntu instructions below
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
@@ -49,7 +49,6 @@ If your running ubuntu 20.04, or completed the steps outlined aboved:
     - Make the install script executable with:  chmod +x ../install-ovpn-server.sh
   
     - Start the installation with:  ./install-ovpn-server.sh
- 
  
 this readme has sourced at the bottom, two tutorials that the install script is based off of, please refer to those
 for more details on the rationale behind some of these commands, or if you encouter any issues while running the 
@@ -64,8 +63,7 @@ Example 'INFO:' flags:
     
     
     - "CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
-  
-  
+   
 the end result of running the install script is a functional OpenVPN server ready to add clients, and issue .ovpn profiles,
 it does require additional networking configuration to allow for access from outside of the LAN.
 
