@@ -23,9 +23,13 @@ OpenVPN is a registered trademark of OpenVPN  Inc.\
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
   - Make sure you have these packages installed:
+  
     - sudo
+    
     - ufw
+    
     - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
+   
    
   - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
     the way i know to do this is by adding the following line to '/etc/sudoers'
