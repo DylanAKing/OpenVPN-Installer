@@ -18,7 +18,7 @@ This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
 
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.\
-#################
+#######
 
 Installation instructions
 If you are running Debian 10.6.0 there are a few things that you need to verify before you begin the installtion
