@@ -104,7 +104,7 @@ read ipv4ca
 echo SERVER INFO: Transferring the Servers SSH-Key to the Certificate Authority...
 
 ##transfer the server's ssh-key to the CA
-ssh-copy-id $name@$ipv4ca
+ssh-copy-id "$name"@"$ipv4ca"
 
 echo CA INFO: Generating the Certificate Authority SSH-Key...
 
@@ -117,7 +117,7 @@ echo DEBUG##########################################
 sleep 5
 
 ##transfer the CA's ssh-key to the Server
-ssh "$name"@"$ipv4ca" ssh-copy-id $usrname@$ipv4
+ssh "$name"@"$ipv4ca" ssh-copy-id "$usrname"@"$ipv4"
 
 echo CA INFO: Updating Certificate Authority and installing dependencies...
 
