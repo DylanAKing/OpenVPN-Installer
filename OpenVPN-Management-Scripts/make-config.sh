@@ -29,17 +29,17 @@ BASE_CONFIG=~/client-configs/base.conf
 #this section echos the contents of the required key files into a copy
 #of the ~/client-configs/base.conf creating a .ovpn profile containing
 #the necessary keys required to connect to the VPN
-cat ${BASE_CONFIG} \
+cat "${BASE_CONFIG}" \
     <(echo -e '<ca>') \
-    ${KEY_DIR}/ca.crt \
+    "${KEY_DIR}"/ca.crt \
     <(echo -e '</ca>\n<cert>') \
-    ${KEY_DIR}/"$name".crt \
+    "${KEY_DIR}"/"$name".crt \
     <(echo -e '</cert>\n<key>') \
-    ${KEY_DIR}/"$name".key \
+    "${KEY_DIR}"/"$name".key \
     <(echo -e '</key>\n<tls-crypt>') \
-    ${KEY_DIR}/ta.key \
+    "${KEY_DIR}"/ta.key \
     <(echo -e '</tls-crypt>') \
-    > ${OUTPUT_DIR}/$name.ovpn
+    > "${OUTPUT_DIR}"/$name.ovpn
 ########################################################################
 
 echo '
