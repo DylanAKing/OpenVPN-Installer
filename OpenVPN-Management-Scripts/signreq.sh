@@ -28,7 +28,7 @@ read remoteuser
 ./easyrsa sign-req client "$name"
 
 #transmit the signed certificate back to the server using SCP
-scp ~/easy-rsa/pki/issued/"$name".crt "$remotuser"@"$ip":/tmp/
+scp ~/easy-rsa/pki/issued/"$name".crt "$remoteuser"@"$ip":/tmp/
 
 #return to users home directory
 cd ~
