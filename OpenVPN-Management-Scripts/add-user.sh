@@ -24,13 +24,13 @@ echo Please enter the username for the Certificate Authority:
 read remoteuser
 
 #generate a request to be signed by the Certificate Authority
-./easyrsa gen-req $name nopass
+./easyrsa gen-req "$name" nopass
 
 #move new clients key to the correct directory
-cp pki/private/$name.key ~/client-configs/keys/ 
+cp pki/private/"$name".key ~/client-configs/keys/ 
 
 #transmit the request to the CA via scp
-scp pki/reqs/$name.req $remoteuser@$ip:/tmp/
+scp pki/reqs/"$name".req "$remoteuser"@"$ip":/tmp/
 
 #return home
 cd ~
