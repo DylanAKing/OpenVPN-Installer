@@ -22,13 +22,13 @@ echo Please enter a username for the OpenVPN Server:
 read remoteuser
 
 #import the request
-./easyrsa import-req /tmp/$name.req $name
+./easyrsa import-req /tmp/"$name".req $name
 
 #sign the request
-./easyrsa sign-req client $name
+./easyrsa sign-req client "$name"
 
 #transmit the signed certificate back to the server using SCP
-scp ~/easy-rsa/pki/issued/$name.crt $remotuser@$ip:/tmp/
+scp ~/easy-rsa/pki/issued/"$name".crt "$remotuser"@"$ip":/tmp/
 
 #return to users home directory
 cd ~
