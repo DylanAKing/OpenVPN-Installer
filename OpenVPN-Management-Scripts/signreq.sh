@@ -22,7 +22,7 @@ echo Please enter a username for the OpenVPN Server:
 read remoteuser
 
 #import the request
-./easyrsa import-req /tmp/"$name".req $name
+./easyrsa import-req /tmp/"$name".req "$name"
 
 #sign the request
 ./easyrsa sign-req client "$name"
