@@ -50,7 +50,7 @@ mkdir ~/easy-rsa
 ln -s /usr/share/easy-rsa/* ~/easy-rsa
 
 ##change ownership of ~/easy-rsa directory to the non-root user
-sudo chown $usrname ~/easy-rsa
+sudo chown "$usrname" ~/easy-rsa
 
 ##change permissions on the ~/easy-rsa directory
 chmod 700 ~/easy-rsa
@@ -109,7 +109,7 @@ ssh-copy-id $name@$ipv4ca
 echo CA INFO: Generating the Certificate Authority SSH-Key...
 
 ##generate a strong 4096 bit
-ssh $name@$ipv4ca ssh-keygen -b 4096
+ssh "$name"@"$ipv4ca" ssh-keygen -b 4096
 
 echo CA INFO: Transferring Certificate Authority SSH-Key to the Server...
 
@@ -117,28 +117,28 @@ echo DEBUG##########################################
 sleep 5
 
 ##transfer the CA's ssh-key to the Server
-ssh $name@$ipv4ca ssh-copy-id $usrname@$ipv4
+ssh "$name"@"$ipv4ca" ssh-copy-id $usrname@$ipv4
 
 echo CA INFO: Updating Certificate Authority and installing dependencies...
 
 ##update the remote system and install Easy-RSA
-ssh -t $name@$ipv4ca 'sudo apt update; sudo apt upgrade easy-rsa ufw -y'
+ssh -t "$name"@"$ipv4ca" 'sudo apt update; sudo apt upgrade easy-rsa ufw -y'
 
 echo CA INFO: Setting up '~/easy-rsa' directory...
 
 ##make the '~/easy-rsa' directory
-ssh $name@$ipv4ca mkdir ~/easy-rsa
+ssh "$name"@"$ipv4ca" mkdir ~/easy-rsa
 
 ##create a synthetic link from '/usr/share/easy-rsa/ to ~/easy-rsa/
-ssh $name@$ipv4ca ln -s /usr/share/easy-rsa/* ~/easy-rsa
+ssh "$name"@"$ipv4ca" ln -s /usr/share/easy-rsa/* ~/easy-rsa
 
 ##change permissions of the '~/easy-rsa' directory
-ssh $name@$ipv4ca chmod 700 ~/easy-rsa
+ssh "$name"@"$ipv4ca" chmod 700 ~/easy-rsa
 
 echo CA INFO: Initializing Certificate Authority Public Key Infrastructure...
 
 ##change to the '~/easy-rsa' directory and create the pki infrastructure
-ssh $name@$ipv4ca 'cd ~/easy-rsa; ./easyrsa init-pki'
+ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa init-pki'
 
 ##this section creates a file called 'vars' in the '~/easy-rsa' directory
 ##and places the lines below into the file using a method known
@@ -147,7 +147,7 @@ ssh $name@$ipv4ca 'cd ~/easy-rsa; ./easyrsa init-pki'
 
 echo CA INFO: Creating Certificate Authority vars file...
 
-ssh $name@$ipv4ca cat > ~/easy-rsa/vars << EOF
+ssh "$name"@"$ipv4ca" cat > ~/easy-rsa/vars << EOF
 set_var EASYRSA_REQ_COUNTRY    "US"
 set_var EASYRSA_REQ_PROVINCE   "NewYork"
 set_var EASYRSA_REQ_CITY       "New York City"
@@ -161,7 +161,7 @@ EOF
 echo CA INFO: Building Easy-RSA Certificate Authority
 
 ##build the Certificate Authority on the remote system 
-ssh $name@$ipv4ca 'cd ~/easy-rsa; ./easyrsa build-ca nopass'
+ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa build-ca nopass'
 
 echo INFO: Finished configuration of Certificate Authority...
 #############################################################
@@ -186,24 +186,24 @@ sudo cp ~/easy-rsa/pki/private/server.key /etc/openvpn/server/
 echo SERVER INFO: Transferring the Servers Request to the Certificate Authority...
  
 ##send the server.req file to the Certificate Authority for signing
-scp ~/easy-rsa/pki/reqs/server.req $name@$ipv4ca:/tmp/
+scp ~/easy-rsa/pki/reqs/server.req "$name"@"$ipv4ca":/tmp/
 
 echo CA INFO: Importing and Signing the Servers Request...
 
 ##connect to the CA via SSH, import and sign the request
-ssh $name@$ipv4ca 'cd ~/easy-rsa; ./easyrsa import-req /tmp/server.req server; ./easyrsa sign-req server server'
+ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa import-req /tmp/server.req server; ./easyrsa sign-req server server'
 
 echo CA INFO: Moving signed Certificates to the /tmp directory...
 ##connect to the CA via SSH and copy the new server certificate to the /tmp/ directory
-ssh $name@$ipv4ca cp ~/easy-rsa/pki/issued/server.crt /tmp/
+ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/issued/server.crt /tmp/
  
 ##connect to the CA via SSH and copy the CA certificate to the /tmp directory
-ssh $name@$ipv4ca cp ~/easy-rsa/pki/ca.crt /tmp/
+ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/ca.crt /tmp/
 
 echo SERVER INFO: Retreiving the signed Certificates from the Certificate Authority...
 
 ##using SCP to retrieve the Server Certificate and CA Certificate from the CAs /tmp directory 
-scp $name@$ipv4ca:/tmp/*.crt /tmp/
+scp "$name"@"$ipv4ca":/tmp/*.crt /tmp/
 
 ##copy the server and CA certificates and place them in the '/etc/openvpn/server' directory
 sudo cp /tmp/{server.crt,ca.crt} /etc/openvpn/server/
@@ -232,7 +232,7 @@ sudo cp ta.key /etc/openvpn/server/
 sudo mv ta.key ~/client-configs/keys/
 
 ##Change ownership of the ca.crt and ta.key to the nonroot user
-sudo chown -R $usrname ~/client-configs/keys/
+sudo chown -R "$usrname" ~/client-configs/keys/
 
 ##copy a sample server.conf file to the /etc/openvpn/server/ directory
 sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/server/
@@ -317,7 +317,7 @@ echo SERVER INFO: Creating temporary file to hold new rules...
 sudo cat > /tmp/temp.txt << EOF 
 *nat
 :POSTROUTING ACCEPT [0:0]
--A POSTROUTING -s 10.8.0.0/8 -o $if -j MASQUERADE
+-A POSTROUTING -s 10.8.0.0/8 -o "$if" -j MASQUERADE
 COMMIT
 EOF
 
@@ -404,10 +404,10 @@ echo SERVER INFO: Making Management scripts Executable...
 chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
 
 #transfer the signreq.sh script to the CA
-scp ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/signreq.sh $name@$ipv4ca:/tmp/
+scp ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/signreq.sh "$name"@"$ipv4ca":/tmp/
 
 # move the signreq.sh script on the CA from /tmp to ~/
-ssh $name@$ipv4ca mv /tmp/signreq.sh ~/
+ssh "$name"@"$ipv4ca" mv /tmp/signreq.sh ~/
 
 echo 'INFO: The installation is now complete!
 
@@ -422,7 +422,7 @@ run: systemctl status openvpn-server@server.service
 
 Remeber to shutdown the Certificate Authority when its not actively
 being used to sign certificates for added security 
-to do this remotely run: ssh '$name'@'$ipv4ca' shutdown now'
+to do this remotely run: ssh '"$name"'@'"$ipv4ca"' shutdown now'
 
 echo INFO: Checking Openvpn-server@server.service status...
 echo INFO: Press 'q' to quit
