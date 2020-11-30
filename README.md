@@ -138,6 +138,17 @@ After you add new remote server addresses you still will need to foward the port
 
 The default values for the install script require port 1194 be forwarded to the OpenVPN Server System.
 
+If you have made it to this point and the script exitted showing the status as "active (running)"\
+you are ready to add clients just run the provided management scripts and follow their prompts.
+
+To add a user:
+
+    - On the Server run the add-user.sh script, this will send the request to the CA
+    
+    - On the CA run signreq.sh script, this will send the certificate back to the Server
+    
+    - On the Server run the make-config.sh script, this will output the finished profile in ~/client-configs/files
+
 ## SOURCES
 
 This script was derived from two tutorials by Jamon Camisso.\
