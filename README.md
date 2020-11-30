@@ -1,6 +1,9 @@
 # OpenVPN-Installer
 Single script configuration of two clean servers/VMs into 1x OVPN server and 1x OVPN/EasyRSA certificate authority
 
+CLONING FROM MAIN MAY INTRODUCE SOME BUGS THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE LASTEST VERSION FROM RELEASES
+FOR A TESTED VERSION
+
 Linux Distro Compatibility:
 
 | Latest Version | 1.0.3 |
