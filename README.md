@@ -10,7 +10,7 @@ as well as accept connections, however it does require additional configuration 
 CLONING FROM MAIN MAY INTRODUCE SOME BUGS THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE LASTEST VERSION FROM RELEASES
 FOR A TESTED VERSION
 
-## Linux Distro Compatibility:
+## Linux Distro Compatibility
 | Distro          |  Version  |     Supported?     |
 | --------------- | --------- | ------------------ |
 |     Ubuntu      |  20.04+   | :white_check_mark: |
@@ -20,14 +20,13 @@ FOR A TESTED VERSION
 |      Gentoo     | --------- |      Planned       |
 |      Fedora     |    33+    |      Planned       |
 
-
 ## Disclaimer
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
 
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.
 
-## Installation Requirements:
+## Installation Requirements
 Basic Requirements
 
     - 2 clean Server Systems or Virtual Machines with lan access
@@ -44,7 +43,7 @@ Script Dependencies:
     
     - ufw
 
-## Installation Instructions:
+## Installation Instructions
 
 For the installation script to function we need to have SSH running on each system to check if its enabled run:
 
