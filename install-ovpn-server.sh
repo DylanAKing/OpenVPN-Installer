@@ -279,7 +279,9 @@ sudo chmod -R 700 ~/client-configs
 ##copy the CA certificate and place it in the '~/client-configs/keys/' directory
 sudo cp /etc/openvpn/server/ca.crt ~/client-configs/keys
 
-echo SERVER INFO: Generating TLS-Crypt Pre-Shared Key...
+echo '
+SERVER INFO: Generating TLS-Crypt Pre-Shared Key...
+'
 
 #move to `/easy-rsa' directory
 cd ~/easy-rsa
@@ -315,7 +317,9 @@ sudo gunzip ~/server.conf.gz
 ##rename server.conf to example-server.conf
 mv ~/server.conf ~/example-server.conf
 
-echo SERVER INFO: Creating Server Configuration file...
+echo '
+SERVER INFO: Creating Server Configuration file...
+'
 
 ##create the trimmed server.conf that will be used by the server
 ##this server.conf only contains the active directives indicated
@@ -354,26 +358,37 @@ EOF
 ##move the new server.conf file from '/tmp' to '/etc/openvpn'
 sudo mv /tmp/server.conf /etc/openvpn/server/
 
-echo SERVER INFO: Adjusting IP-Fowarding Policy...
+echo '
+SERVER INFO: Adjusting IP-Fowarding Policy...
+'
 
 ##append the following line to '/etc/sysctl.conf' adjusting the ip fowarding policy
-sudo echo "net.ipv4.ip_forward = 1"|sudo tee -a /etc/sysctl.conf
+echo "net.ipv4.ip_forward = 1"|sudo tee -a /etc/sysctl.conf
 
-echo SERVER INFO: Applying updated IP-Fowarding Policy to the current session...
+echo '
+SERVER INFO: Applying updated IP-Fowarding Policy to the current session...
+'
 
 ##load the new ip forwaing values for the current session
 sudo sysctl -p
 
-echo SERVER INFO: Backing up 'ufw/before.rules' before modification
-echo SERVER INFO: Backup saved at: /etc/ufw/before.rules.bak
+echo '
+SERVER INFO: Backing up ufw/before.rules before modification
+
+SERVER INFO: Backup saved at: /etc/ufw/before.rules.bak
+'
 
 ##create a copy of "before.rules" in the same directory as a backup
 sudo cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 
-echo Please enter the name of the Server network interface you want to use:
+echo '
+Please enter the name of the Server network interface you want to use:
+'
 read if
 
-echo SERVER INFO: Creating temporary file to hold new rules...
+echo '
+SERVER INFO: Creating temporary file to hold new rules...
+'
 
 ##add new rules to a temporary file that will be joined with /etc/ufe/before.rules using cat
 sudo cat > /tmp/temp.txt << EOF 
@@ -383,7 +398,9 @@ sudo cat > /tmp/temp.txt << EOF
 COMMIT
 EOF
 
-echo SERVER INFO: Adding new rules to '/etc/ufw/before.rules'...
+echo '
+SERVER INFO: Adding new rules to '/etc/ufw/before.rules'...
+'
 
 ##use cat to join the before.rules to the temperary file containing the new rules
 ##this results in the contents of the first file appearing at the start of the second
@@ -395,13 +412,18 @@ sudo mv /tmp/before.rules /etc/ufw/
 ##restore the appropriate permissions for /etc/ufw/before.rules
 sudo chmod 640 /etc/ufw/before.rules
 
-echo SERVER INFO: Backing up '/etc/default/ufw' before modification...
-echo SERVER INFO: Backup stored at: /etc/default/ufw.bak
+echo '
+SERVER INFO: Backing up /etc/default/ufw before modification...
+
+SERVER INFO: Backup stored at: /etc/default/ufw.bak
+'
 
 ##backup /etc/default/ufw
 sudo cp /etc/default/ufw /etc/default/ufw.bak
 
-echo SERVER INFO: Editing '/etc/default/ufw'...
+echo '
+SERVER INFO: Editing '/etc/default/ufw'...
+'
 
 ##create the new file in the /tmp directory
 sudo cat > /tmp/ufw << EOF
@@ -427,7 +449,9 @@ mkdir ~/client-configs/files
 ##backup the normal base.conf, a trimmed base.conf will be used by this script
 cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/example-base.conf
 
-echo SERVER INFO: Create the client base configuration...
+echo '
+SERVER INFO: Create the client base configuration...
+'
 
 ##create the trimmed base.conf in '~/client-configs/'
 sudo cat > ~/client-configs/base.conf << EOF
@@ -447,12 +471,16 @@ key-direction 1
 verb 3
 EOF
 
-echo SERVER INFO: Enabling Firewall...
+echo '
+SERVER INFO: Enabling Firewall...
+'
 
 ##enable firewall on startup
 sudo ufw enable
 
-echo SERVER INFO: Starting OpenVPN Server...
+echo '
+SERVER INFO: Starting OpenVPN Server...
+'
 
 #start OpenVPN Server
 sudo systemctl start openvpn-server@server.service
@@ -460,7 +488,9 @@ sudo systemctl start openvpn-server@server.service
 ##uncomment to enable OpenVPN to run on startup
 #sudo systemctl enable openvpn-server@server.service
 
-echo SERVER INFO: Making Management scripts Executable...
+echo '
+SERVER INFO: Making Management scripts Executable...
+'
 
 #make the managment scripts executable
 chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
@@ -471,7 +501,8 @@ scp ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/signreq.sh "$name"@"$ipv4ca"
 # move the signreq.sh script on the CA from /tmp to ~/
 ssh "$name"@"$ipv4ca" mv /tmp/signreq.sh ~/
 
-echo 'INFO: The installation is now complete!
+echo '
+INFO: The installation is now complete!
 
 To start the server;
 run: systemctl start openvpn-server@server.service
@@ -484,10 +515,11 @@ run: systemctl status openvpn-server@server.service
 
 Remeber to shutdown the Certificate Authority when its not actively
 being used to sign certificates for added security 
-to do this remotely run: ssh '"$name"'@'"$ipv4ca"' shutdown now'
+to do this remotely run: ssh '"$name"'@'"$ipv4ca"' shutdown now
 
-echo INFO: Checking Openvpn-server@server.service status...
-echo INFO: Press 'q' to quit
+INFO: Checking Openvpn-server@server.service status...
+
+INFO: Press 'q' to quit'
 
 #display the status of the OpenVPN server
 systemctl status openvpn-server@server.service
