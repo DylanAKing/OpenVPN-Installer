@@ -519,7 +519,7 @@ to do this remotely run: ssh '"$name"'@'"$ipv4ca"' shutdown now
 
 INFO: Checking Openvpn-server@server.service status...
 
-INFO: Press 'q' to quit'
+INFO: Press "q" to quit'
 
 #display the status of the OpenVPN server
 systemctl status openvpn-server@server.service
