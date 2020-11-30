@@ -11,14 +11,14 @@ CLONING FROM MAIN MAY INTRODUCE SOME BUGS THAT HAVENT BEEN ADDRESSED YET PLEASE 
 FOR A TESTED VERSION
 
 Linux Distro Compatibility:
-| Distro | Version |     Supported?     |
-| ------ | ------- | ------------------ |
-| Ubuntu | 20.04+  | :white_check_mark: |
-|        | < 18.04 | :x:                |
-| Debian | 10.6.0+ | :white_check_mark: |
-|  Arch  | Rolling |      Planned       |
-| Gentoo | ------- |      Planned       |
-| Fedora |   33+   |      Planned       |
+| Distro          |  Version  |     Supported?     |
+| --------------- | --------- | ------------------ |
+|     Ubuntu      |  20.04+   | :white_check_mark: |
+|     Debian      |  10.6.0+  | :white_check_mark: |
+| Raspberry Pi OS | 8.20.2020 | :white_check_mark: |
+|       Arch      |  Rolling  |      Planned       |
+|      Gentoo     | --------- |      Planned       |
+|      Fedora     |    33+    |      Planned       |
 
 
 ##Disclaimer!!!##\
