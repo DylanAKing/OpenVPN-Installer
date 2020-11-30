@@ -1,13 +1,13 @@
 # OpenVPN-Installer
+| Latest Release | 1.0.3 |
+| -------------- | ----- |
+
 Single script configuration of two clean servers/VMs into 1x OVPN server and 1x OVPN/EasyRSA certificate authority
 
 The end result of running the install script is a functional OpenVPN server ready to add clients, and issue .ovpn profiles,
 as well as accept connections, however it does require additional configuration to allow for access from outside of the LAN.
 
 
-
-| Latest Release | 1.0.3 |
-| -------------- | ----- |
 
 CLONING FROM MAIN MAY INTRODUCE SOME BUGS THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE LASTEST VERSION FROM RELEASES
 FOR A TESTED VERSION
