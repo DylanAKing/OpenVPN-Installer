@@ -26,7 +26,7 @@ echo "
 
 INFO: Starting Server configuration...
 Please enter the username of your non-root user:
-'
+"
 read usrname
 
 echo '
