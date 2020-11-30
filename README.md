@@ -47,38 +47,40 @@ Script Dependencies:
 
 ## Installation Instructions
 
-For the installation script to function we need to have SSH running on each system to check if its enabled run:
+For the installation script to function we need to have SSH running on each system.
+
+To check if its enabled:
 
     systemctl status ssh
 
-If you need to start it run:
+To start it:
 
     sudo systemctl start ssh
     
-If you want ssh to run on start up:
+To enable SSH to run on start up:
 
     sudo systemctl enable ssh
 
 If you are running Debian 10.6.0 there are a few things to verify before you run the installer:
 
     Make sure you have these packages installed:
-
+    
         - sudo
     
         - ufw
     
         - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
-    Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
+    Verify the Desired non-root user is in the sudoers file '/etc/sudoers'
     the way i know to do this is by adding the following line to '/etc/sudoers'
     
         $username ALL=(ALL:ALL) ALL
       
-    Replacing $username with the name on your non root user and placing this line\
-    below the corresponding line for ROOT. \
+    Replacing $username with the name on your non root user and placing this line
+    below the corresponding line for ROOT.
     Please inform me if there is a better way to acheive this.
   
-    With these packages installed and a non-root user capable of using the "sudo" command, \
+    With these packages installed and a non-root user capable of using the "sudo" command,
     you are ready to run the installer, just follow the ubuntu instructions below.
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
@@ -142,6 +144,7 @@ The default values for the install script require port 1194 be forwarded to the 
 
 If you have made it to this point and the script exitted showing the status as "active (running)"\
 you are ready to add clients just run the provided management scripts and follow their prompts.
+after you have generated a profile import it to your client and you should be able to connect.
 
 To add a user:
 
