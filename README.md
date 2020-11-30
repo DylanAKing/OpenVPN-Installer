@@ -42,6 +42,8 @@ Script Dependencies:
     - Sudo
     
     - ufw
+    
+    - gzip
 
 ## Installation Instructions
 
