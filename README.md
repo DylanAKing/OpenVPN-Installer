@@ -21,20 +21,18 @@ Linux Distro Compatibility:
 |  Arch  | Rolling |      Postponed     |
 
 ##Disclaimer!!!##\
-This installer script is not affiliated with OpenVPN® or OpenVPN Inc.\
+This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
 
 © 2002-2019 OpenVPN Inc.\
-OpenVPN is a registered trademark of OpenVPN  Inc.\
+OpenVPN is a registered trademark of OpenVPN  Inc.
 
 Installation requirements:
 
     - 2 clean Server Systems or Virtual Machines with lan access
     
     - LAN ip addresses of both systems
-    
-    - active internet connection on one system and lan acess to the other
-    
-    - identity of the network interface to use on the Server(ex: en0, eth0, ens18,...)
+      
+    - Identity of the network interface to use on the Server System(ex: en0, eth0, ens18,...)
 
 Script Dependencies:
 
@@ -70,7 +68,7 @@ If you are running Debian 10.6.0 there are a few things to verify before you run
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
 
-    - From the home directory, Clone this Repository and Extract it
+    - From your home directory, Clone this Repository and Extract it
   
     - Make the install script executable with:  chmod +x ~/OpenVPN-Installer-*/install-ovpn-server.sh
   
