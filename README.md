@@ -37,7 +37,7 @@ Basic Requirements
 
 Script Dependencies:
 
-    - EasyRSA v3.0.0 or higher (script was built using v3.0.6, but should be backward compatible to atleast v3.0.0)
+    - EasyRSA v3.0.0+ (script was built using v3.0.6, but should be backward compatible to atleast v3.0.0)
     
     - Sudo
     
