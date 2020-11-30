@@ -3,7 +3,7 @@
 ##OpenVPN-Installer/install-ovpn-server.sh                                   ##
 ##                                                                           ##
 ##Script Author: Dylan A King                                                ##
-##Script Version: 1.0.3-alpha                                                ##
+##Script Version: 1.0.3                                                      ##
 ##Version Date: 11/26/2020                                                   ##
 ###############################################################################
 #this script runs commands on 2 systems and assumes you have a second system  #
@@ -11,19 +11,27 @@
 # provide login credentials and ipv4 address of the second system and this    #
 #script will automatically configure the second system over SSH               #
 ###############################################################################
-echo INFO: Starting Server configuration...
+echo '
+INFO: Starting Server configuration...
+'
 
-echo Please enter the username of your non-root account:
+echo '
+Please enter the username of your non-root account:
+'
 
 ##ask for name of non-root user account for the Server
 read usrname
 
-echo SERVER INFO: Updating Sever system and installing dependencies...
+echo '
+SERVER INFO: Updating Sever system and installing dependencies...
+'
 
 ##update host
 sudo apt update && sudo apt upgrade ssh openvpn easy-rsa ufw -y
 
-echo SERVER INFO: Configuring Firewall...
+echo '
+SERVER INFO: Configuring Firewall...
+'
 
 ##allow Openssh through the firewall if installed
 sudo ufw allow openssh
@@ -37,12 +45,17 @@ sudo ufw allow 1194/udp
 ##allow port 443/tcp through the firewall
 #sudo ufw allow 443/tcp
 
-echo SERVER INFO: Generating the Server SSH-Key...
+echo '
+SERVER INFO: Generating the Server SSH-Key...
+'
 
 ##generate a strong 4096-bit ssh-key to be sent to the CA
 ssh-keygen -b 4096
 
-echo SERVER INFO: Setting up Easy-RSA directory structure...
+echo '
+SERVER INFO: Setting up Easy-RSA directory structure...
+'
+
 ##make root directory for easy-rsa
 mkdir ~/easy-rsa
 
@@ -58,7 +71,9 @@ chmod 700 ~/easy-rsa
 ##change to the '~/easy-rsa' directory
 cd ~/easy-rsa
 
-echo SERVER INFO: Creating the Servers vars file...
+echo '
+SERVER INFO: Creating the Servers vars file...
+'
 
 ##create the 'vars' file for the server
 cat > /tmp/vars << EOF
@@ -69,27 +84,45 @@ EOF
 #move the newly created vars file to the correct location
 mv /tmp/vars ~/easy-rsa/
 
-echo SERVER INFO: Initializing Public Key Infrastructure...
+echo '
+SERVER INFO: Initializing Public Key Infrastructure...
+'
 
 ##initialize the pki
 ./easyrsa init-pki
 
-echo INFO: Finished initial configuration of the server system.
+echo '
+INFO: Finished initial configuration of the server system.
+'
+
 ###############################################################
 
 ###############################################################
 ##this section will configure the OpenVPN Certificate Authority
 ##by connecting to a second ubuntu 20.04 system via SSH
 
-echo INFO: Starting Certificate Authority configuration...
+echo '
+INFO: Starting Certificate Authority configuration...
+'
 
-echo Please enter the username for the second system or VM:
+echo '
+Please enter the username for the second system or VM:
+'
 read name
 
-echo Please enter the ipv4 address of the first system/Server system:
+#display the current ip information for all interfaces
+ip a
+
+echo For convenience above is the IP information for the Server system.
+
+echo '
+Please enter the ipv4 address of the first system/Server system:
+'
 read ipv4
 
-echo Please enter the ipv4 address of the second system/Certificate Authority system:
+echo '
+Please enter the ipv4 address of the second system/Certificate Authority system:
+'
 read ipv4ca
 
 ##here we use ssh-copy-id to securely transfer the ssh-key we generated
@@ -101,30 +134,37 @@ read ipv4ca
 ##actors from successfully brute-forcing the user's password. 
 ##this script leaves password-based auth. enabled as a fail-safe.
 
-echo SERVER INFO: Transferring the Servers SSH-Key to the Certificate Authority...
+echo '
+SERVER INFO: Transferring the Servers SSH-Key to the Certificate Authority...
+'
 
 ##transfer the server's ssh-key to the CA
 ssh-copy-id "$name"@"$ipv4ca"
 
-echo CA INFO: Generating the Certificate Authority SSH-Key...
+echo '
+CA INFO: Generating the Certificate Authority SSH-Key...
+'
 
 ##generate a strong 4096 bit
 ssh "$name"@"$ipv4ca" ssh-keygen -b 4096
 
-echo CA INFO: Transferring Certificate Authority SSH-Key to the Server...
-
-echo DEBUG##########################################
-sleep 5
+echo '
+CA INFO: Transferring Certificate Authority SSH-Key to the Server...
+'
 
 ##transfer the CA's ssh-key to the Server
 ssh "$name"@"$ipv4ca" ssh-copy-id "$usrname"@"$ipv4"
 
-echo CA INFO: Updating Certificate Authority and installing dependencies...
+echo '
+CA INFO: Updating Certificate Authority and installing dependencies...
+'
 
 ##update the remote system and install Easy-RSA
 ssh -t "$name"@"$ipv4ca" 'sudo apt update; sudo apt upgrade easy-rsa ufw -y'
 
-echo CA INFO: Setting up '~/easy-rsa' directory...
+echo '
+CA INFO: Setting up '~/easy-rsa' directory...
+'
 
 ##make the '~/easy-rsa' directory
 ssh "$name"@"$ipv4ca" mkdir ~/easy-rsa
@@ -135,7 +175,9 @@ ssh "$name"@"$ipv4ca" ln -s /usr/share/easy-rsa/* ~/easy-rsa
 ##change permissions of the '~/easy-rsa' directory
 ssh "$name"@"$ipv4ca" chmod 700 ~/easy-rsa
 
-echo CA INFO: Initializing Certificate Authority Public Key Infrastructure...
+echo '
+CA INFO: Initializing Certificate Authority Public Key Infrastructure...
+'
 
 ##change to the '~/easy-rsa' directory and create the pki infrastructure
 ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa init-pki'
@@ -145,7 +187,9 @@ ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa init-pki'
 ##as 'here documents'. Set the values in quotations("") to whatever you 
 ##want just do not leave them blank.
 
-echo CA INFO: Creating Certificate Authority vars file...
+echo '
+CA INFO: Creating Certificate Authority vars file...
+'
 
 ssh "$name"@"$ipv4ca" cat > ~/easy-rsa/vars << EOF
 set_var EASYRSA_REQ_COUNTRY    "US"
@@ -158,19 +202,26 @@ set_var EASYRSA_ALGO           "ec"
 set_var EASYRSA_DIGEST         "sha512"
 EOF
 
-echo CA INFO: Building Easy-RSA Certificate Authority
+echo '
+CA INFO: Building Easy-RSA Certificate Authority
+'
 
 ##build the Certificate Authority on the remote system 
 ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa build-ca nopass'
 
-echo INFO: Finished configuration of Certificate Authority...
+echo '
+INFO: Finished configuration of Certificate Authority...
+'
+
 #############################################################
 
 ###########################################################################
 ##this section will finish setting up the OpenVPN Server and associating it
 ##with the configured CA server
 
-echo SERVER INFO: Generating Server Public Key and Certificate Request...
+echo '
+SERVER INFO: Generating Server Public Key and Certificate Request...
+'
 
 ##change to the '~/easy-rsa' directory
 cd ~/easy-rsa
@@ -178,29 +229,40 @@ cd ~/easy-rsa
 ##generate the server`s request and key
 ./easyrsa gen-req server nopass
 
-echo SERVER INFO: Copying Server Public Key to '/etc/openvpn/server/'...
+echo '
+SERVER INFO: Copying Server Public Key to '/etc/openvpn/server/'...
+'
 
 ##copy server key to the '/etc/openvpn/server' directory 
 sudo cp ~/easy-rsa/pki/private/server.key /etc/openvpn/server/
 
-echo SERVER INFO: Transferring the Servers Request to the Certificate Authority...
- 
+echo '
+SERVER INFO: Transferring the Servers Request to the Certificate Authority...
+'
+
 ##send the server.req file to the Certificate Authority for signing
 scp ~/easy-rsa/pki/reqs/server.req "$name"@"$ipv4ca":/tmp/
 
-echo CA INFO: Importing and Signing the Servers Request...
+echo '
+CA INFO: Importing and Signing the Servers Request...
+'
 
 ##connect to the CA via SSH, import and sign the request
 ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa import-req /tmp/server.req server; ./easyrsa sign-req server server'
 
-echo CA INFO: Moving signed Certificates to the /tmp directory...
+echo '
+CA INFO: Moving signed Certificates to the /tmp directory...
+'
+
 ##connect to the CA via SSH and copy the new server certificate to the /tmp/ directory
 ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/issued/server.crt /tmp/
  
 ##connect to the CA via SSH and copy the CA certificate to the /tmp directory
 ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/ca.crt /tmp/
 
-echo SERVER INFO: Retreiving the signed Certificates from the Certificate Authority...
+echo '
+SERVER INFO: Retreiving the signed Certificates from the Certificate Authority...
+'
 
 ##using SCP to retrieve the Server Certificate and CA Certificate from the CAs /tmp directory 
 scp "$name"@"$ipv4ca":/tmp/*.crt /tmp/
