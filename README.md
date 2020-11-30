@@ -16,7 +16,10 @@ Linux Distro Compatibility:
 | Ubuntu |  20.04  | :white_check_mark: |
 |        | < 18.04 | :x:                |
 | Debian |  10.6.0 | :white_check_mark: |
-|  Arch  | Rolling |      Postponed     |
+|  Arch  | Rolling |      Planned       |
+| Gentoo | ------- |      Planned       |
+| Fedora |   33+   |      Planned       |
+
 
 ##Disclaimer!!!##\
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
