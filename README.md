@@ -10,7 +10,7 @@ as well as accept connections, however it does require additional configuration 
 CLONING FROM MAIN MAY INTRODUCE SOME BUGS THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE LASTEST VERSION FROM RELEASES
 FOR A TESTED VERSION
 
-Linux Distro Compatibility:
+# Linux Distro Compatibility:
 | Distro          |  Version  |     Supported?     |
 | --------------- | --------- | ------------------ |
 |     Ubuntu      |  20.04+   | :white_check_mark: |
@@ -21,19 +21,20 @@ Linux Distro Compatibility:
 |      Fedora     |    33+    |      Planned       |
 
 
-##Disclaimer!!!##\
+# Disclaimer
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
 
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.
 
-Installation requirements:
+# Installation Requirements:
+Basic Requirements
 
     - 2 clean Server Systems or Virtual Machines with lan access
     
     - LAN ip addresses of both systems
       
-    - Identity of the network interface to use on the Server System(ex: en0, eth0, ens18,...)
+    - Identity of the network interface to use on the Server System(ex: en0, eth0, ens18,...) 
 
 Script Dependencies:
 
@@ -43,11 +44,23 @@ Script Dependencies:
     
     - ufw
 
-Installation instructions:
+# Installation Instructions:
+
+For the installation script to function we need to have SSH running on each system to check if its enabled run:
+
+    systemctl status ssh
+
+If you need to start it run:
+
+    sudo systemctl start ssh
+    
+If you want ssh to run on start up:
+
+    sudo systemctl enable ssh
 
 If you are running Debian 10.6.0 there are a few things to verify before you run the installer
 
-    Make sure you have these packages installed:
+Make sure you have these packages installed:
 
         - sudo
     
@@ -55,17 +68,17 @@ If you are running Debian 10.6.0 there are a few things to verify before you run
     
         - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
-    Verify the Desired non-root user is in the sudoers file '/etc/sudoers'
-    the way i know to do this is by adding the following line to '/etc/sudoers'
+Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
+the way i know to do this is by adding the following line to '/etc/sudoers'
     
         $username ALL=(ALL:ALL) ALL
       
-    Replacing $username with the name on your non root user and placing this line
-    below the corresponding line for ROOT
-    Please inform me if there is a better way to acheive this.
+Replacing $username with the name on your non root user and placing this line\
+below the corresponding line for ROOT. \
+Please inform me if there is a better way to acheive this.
   
-    With these packages installed and a non-root user capable of using the "sudo" command,
-    you are ready to run the installer, just follow the ubuntu instructions below.
+With these packages installed and a non-root user capable of using the "sudo" command,
+you are ready to run the installer, just follow the ubuntu instructions below.
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
 
@@ -126,7 +139,7 @@ After you add new remote server addresses you still will need to foward the port
 
 The default values for the install script require port 1194 be forwarded to the OpenVPN Server System.
 
-SOURCES:
+# SOURCES
 
 This script was derived from two tutorials by Jamon Camisso.\
 below are links to the tutorials:
