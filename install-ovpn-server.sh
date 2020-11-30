@@ -10,7 +10,7 @@ echo "
   \____/| .__/ \___|_| |_|\/   |_|    |_| \_|    |_____|_| |_|___/\__\__,_|_|_|\___|_|   
         | |                                                                              
         |_|                                                                              
-"
+
 ###############################################################################
 ##OpenVPN-Installer/install-ovpn-server.sh                                   ##
 ##                                                                           ##
@@ -20,18 +20,13 @@ echo "
 ###############################################################################
 #this script runs commands on 2 systems and assumes you have a second system  #
 #or VM to be used as a CA and during the installation you will be asked to    #
-# provide login credentials and ipv4 address of the second system and this    #
+#provide login credentials and ipv4 address of the second system and this     #
 #script will automatically configure the second system over SSH               #
 ###############################################################################
-echo '
+
 INFO: Starting Server configuration...
+Please enter the username of your non-root user:
 '
-
-echo '
-Please enter the username of your non-root account:
-'
-
-##ask for name of non-root user account for the Server
 read usrname
 
 echo '
