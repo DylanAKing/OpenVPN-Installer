@@ -33,16 +33,16 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     
         - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
-    - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
+    - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'
     the way i know to do this is by adding the following line to '/etc/sudoers'
     
         $username ALL=(ALL:ALL) ALL
       
-    replacing $username with the name on the non root user and placing this line\
-    below the corresponding line for ROOT\
+    replacing $username with the name on the non root user and placing this line
+    below the corresponding line for ROOT
     Please inform me if there is a better way to acheive this.
   
-    - With these packages installed and a non-root user capable of using the "sudo" command,\
+    - With these packages installed and a non-root user capable of using the "sudo" command,
     youre ready to install just follow the ubuntu instructions below
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
@@ -62,10 +62,10 @@ example you should find that spot in the script to understand what was happening
 
 Example 'INFO:' flags:
 
-    - "SERVER INFO: (some Text)" < shows that the script is executing commands on the host OpenVPN Server system
+    - "SERVER INFO: ..." < shows the script is executing commands on the host OpenVPN Server system
     
     
-    - "CA INFO: (some text)" < shows that the script is executing commands on the remote OpenVPN Certificate Authority system
+    - "CA INFO: ..." < shows the script is executing commands on the remote OpenVPN Certificate Authority system
    
 the end result of running the install script is a functional OpenVPN server ready to add clients, and issue .ovpn profiles,
 it does require additional networking configuration to allow for access from outside of the LAN.
@@ -85,27 +85,25 @@ outside of the LAN you need to add additional remote servers to the configuratio
 a public facing ip address or a Fully Qualified Domain Name(FQDN). you can do this by editing the script before you
 run it and add additional 'remote IP/FQDN port' lines as shown below:
 
-echo INFO: Create the client base configuration...
-
-##create the trimmed base.conf in '~/client-configs/'
-#sudo cat > ~/client-configs/base.conf << EOF\
-client\
-dev tun\
-proto udp\
-remote $ipv4 1194 < this line uses the IP stored in $ipv4, and adds it as the first default remote server on port 1194\
-remote IP/FQDN port\
-^ add new lines above replacing the 'IP/FQDN' & 'port' with your info.(ex: remote 0.0.0.0 1194; remote www.example.com 1194)\
-resolve-retry infinite\
-user nobody\
-group nobody\
-persist-key\
-persist-tun\
-remote-cert-tls server\
-cipher AES-256-GCM\
-auth sha256\
-key-direction 1\
-verb 3\
-EOF
+    ##create the trimmed base.conf in '~/client-configs/'
+    sudo cat > ~/client-configs/base.conf << EOF
+    client
+    dev tun
+    proto udp
+    remote $ipv4 1194 < this line uses the IP stored in $ipv4, and adds it as the first server on port 1194
+    remote IP/FQDN port
+    ^ add new lines here replacing the 'IP/FQDN' & 'port'.(ex: remote 0.0.0.0 1194; remote www.example.com 1194)
+    resolve-retry infinite
+    user nobody
+    group nobody
+    persist-key
+    persist-tun
+    remote-cert-tls server
+    cipher AES-256-GCM
+    auth sha256
+    key-direction 1
+    verb 3
+    EOF
 
 After you add new remote server addresses you still will need to port foward the ports chosen during the install
 the default values for the script require port 1194 be forwarded to the OpenVPN Server System
