@@ -31,6 +31,8 @@ Basic Requirements
 
     - 2 clean Server Systems or Virtual Machines with lan access
     
+    - SSH actively running on both system
+    
     - LAN ip addresses of both systems
       
     - Identity of the network interface to use on the Server System(ex: en0, eth0, ens18,...) 
