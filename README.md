@@ -84,8 +84,6 @@ Example 'INFO:' flags:
     
     - "CA INFO: ..." < shows the script is executing commands on the remote OpenVPN Certificate Authority system
    
-
-
 The install script creates some stripped down versions of a couple of files (removing all unused configuration options and 
 comments), one of them being '/etc/default/ufw'.
 
