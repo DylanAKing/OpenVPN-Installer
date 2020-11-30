@@ -61,16 +61,16 @@ If you are running Debian 10.6.0 there are a few things to verify before you run
 
 Make sure you have these packages installed:
 
-        - sudo
+    - sudo
     
-        - ufw
+    - ufw
     
-        - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
+    - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
 Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
 the way i know to do this is by adding the following line to '/etc/sudoers'
     
-        $username ALL=(ALL:ALL) ALL
+    $username ALL=(ALL:ALL) ALL
       
 Replacing $username with the name on your non root user and placing this line\
 below the corresponding line for ROOT. \
