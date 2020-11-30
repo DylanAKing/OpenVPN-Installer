@@ -13,9 +13,9 @@ FOR A TESTED VERSION
 Linux Distro Compatibility:
 | Distro | Version |     Supported?     |
 | ------ | ------- | ------------------ |
-| Ubuntu |  20.04  | :white_check_mark: |
+| Ubuntu | 20.04+  | :white_check_mark: |
 |        | < 18.04 | :x:                |
-| Debian |  10.6.0 | :white_check_mark: |
+| Debian | 10.6.0+ | :white_check_mark: |
 |  Arch  | Rolling |      Planned       |
 | Gentoo | ------- |      Planned       |
 | Fedora |   33+   |      Planned       |
