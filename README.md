@@ -31,24 +31,25 @@ If you are running Debian 10.6.0 there are a few things that you need to verify 
     
         - ufw
     
-        - unzip ((optional)or select an alternative dependant on your download format ex: .zip, .tar.gz)
+        - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
     - Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
     the way i know to do this is by adding the following line to '/etc/sudoers'
     
         $username ALL=(ALL:ALL) ALL
       
-    replacing $username with the name on the non root user and placing this line below the corresponding line for ROOT\
+    replacing $username with the name on the non root user and placing this line\
+    below the corresponding line for ROOT\
     Please inform me if there is a better way to acheive this.
   
-    - With these packages installed and a non-root user capable of using the "sudo" command, youre ready to install
-    just follow the ubuntu instructions below
+    - With these packages installed and a non-root user capable of using the "sudo" command,\
+    youre ready to install just follow the ubuntu instructions below
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
 
-    - Clone this Repository and Extract it
+    - From the home directory, Clone this Repository and Extract it
   
-    - Make the install script executable with:  chmod +x ../install-ovpn-server.sh
+    - Make the install script executable with:  chmod +x ~/OpenVPN-Installer-*/install-ovpn-server.sh
   
     - Start the installation with:  ./install-ovpn-server.sh
  
