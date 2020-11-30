@@ -59,27 +59,27 @@ If you want ssh to run on start up:
 
     sudo systemctl enable ssh
 
-If you are running Debian 10.6.0 there are a few things to verify before you run the installer
+If you are running Debian 10.6.0 there are a few things to verify before you run the installer:
 
-Make sure you have these packages installed:
+    Make sure you have these packages installed:
 
-    - sudo
+        - sudo
     
-    - ufw
+        - ufw
     
-    - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
+        - unzip (or select an alternative dependant on your download format ex: .zip, .tar.gz)
     
-Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
-the way i know to do this is by adding the following line to '/etc/sudoers'
+    Verify the Desired non-root user is in the sudoers file '/etc/sudoers'\
+    the way i know to do this is by adding the following line to '/etc/sudoers'
     
-    $username ALL=(ALL:ALL) ALL
+        $username ALL=(ALL:ALL) ALL
       
-Replacing $username with the name on your non root user and placing this line\
-below the corresponding line for ROOT. \
-Please inform me if there is a better way to acheive this.
+    Replacing $username with the name on your non root user and placing this line\
+    below the corresponding line for ROOT. \
+    Please inform me if there is a better way to acheive this.
   
-With these packages installed and a non-root user capable of using the "sudo" command,
-you are ready to run the installer, just follow the ubuntu instructions below.
+    With these packages installed and a non-root user capable of using the "sudo" command, \
+    you are ready to run the installer, just follow the ubuntu instructions below.
 
 If your running ubuntu 20.04, or completed the steps outlined aboved:
 
