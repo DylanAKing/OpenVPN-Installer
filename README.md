@@ -25,7 +25,7 @@ This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.
 
-## Installation Requirem
+## Installation Requirements
 Basic Requirements
 
     - 2 clean Server Systems or Virtual Machines with lan access
