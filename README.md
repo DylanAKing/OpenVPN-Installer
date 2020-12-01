@@ -34,19 +34,21 @@ Basic Requirements
     
     - LAN ip addresses of both systems
       
-    - Identity of the network interface to use on the Server System(ex: en0, eth0, ens18,...) 
+    - Identity of the network interface to use on the Server System (ex: en0, eth0, ens18,...) 
 
 Script Dependencies:
 
-    - EasyRSA v3.0.0+ (script was built using v3.0.6, but should be backward compatible to atleast v3.0.0)
+    - easy-rsa ((v3.0.0+) script was built using v3.0.6, but should be backward compatible to atleast v3.0.0)
     
-    - Sudo
+    - openvpn
+    
+    - sudo
     
     - ufw
     
     - gzip
     
-    - SSH
+    - ssh
 
 ## Installation Instructions
 
