@@ -22,6 +22,12 @@ echo "
 # or VM to be used as a CA, and during the installation you will be asked to  #
 # provide login credentials and ipv4 address of the second system, then this  #
 # script will automatically configure the second system over SSH              #
+# To complete this script you need to know:                                   #
+# -IP Address of both systems                                                 #
+# -Identity of the network interface you want to use (ex: eth0, ens18, ...)   #
+# -Login Credentials for the desired user on the remote system                #
+#                                                                             #
+# If you dont know any of these press 'control+c' at anytime to exit          #
 ###############################################################################
 
 INFO: Starting Server configuration...
