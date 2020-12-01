@@ -1,5 +1,5 @@
 # OpenVPN-Installer
-| Latest Release | 1.0.3 |
+| Latest Release | 1.0.4-alpha |
 | -------------- | ----- |
 
 Single script configuration of two clean servers/VMs into 1x OVPN server and 1x OVPN/EasyRSA certificate authority
@@ -7,7 +7,7 @@ Single script configuration of two clean servers/VMs into 1x OVPN server and 1x 
 The end result of running the install script is a functional [OpenVPN](https://openvpn.net) server ready to add clients, and issue .ovpn profiles,
 as well as accept connections, however it does require additional configuration to allow for access from outside of the LAN.
 
-### CLONING FROM MAIN MAY INTRODUCE SOME BUGS THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE LASTEST VERSION FROM [RELEASES](https://github.com/DylanAKing/OpenVPN-Installer/releases)
+### CLONING FROM MAIN MAY INTRODUCE SOME [BUGS](https://github.com/DylanAKing/OpenVPN-Installer/issues) THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE LASTEST VERSION FROM [RELEASES](https://github.com/DylanAKing/OpenVPN-Installer/releases)
 
 ## Linux Distro Compatibility
 | Distro          |  Version  |     Supported?     |
@@ -15,9 +15,9 @@ as well as accept connections, however it does require additional configuration 
 |     Ubuntu      |  20.04+   | :white_check_mark: |
 |     Debian      |  10.6.0+  | :white_check_mark: |
 | Raspberry Pi OS | 8.20.2020 | :white_check_mark: |
-|       Arch      |  Rolling  |      Planned       |
-|      Gentoo     | --------- |      Planned       |
-|      Fedora     |    33+    |      Planned       |
+|     Arch        |  Rolling  |      Planned       |
+|     Gentoo      | --------- |      Planned       |
+|     Fedora      |    33+    |      Planned       |
 
 ## Disclaimer
 This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
@@ -25,7 +25,7 @@ This installer script is not affiliated with OpenVPN® or OpenVPN Inc.
 © 2002-2019 OpenVPN Inc.\
 OpenVPN is a registered trademark of OpenVPN  Inc.
 
-## Installation Requirements
+## Installation Requirem
 Basic Requirements
 
     - 2 clean Server Systems or Virtual Machines with lan access
