@@ -45,6 +45,8 @@ Script Dependencies:
     - ufw
     
     - gzip
+    
+    - SSH
 
 ## Installation Instructions
 
