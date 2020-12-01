@@ -15,8 +15,8 @@ echo "
 ## www.github.com/DylanAKing/OpenVPN-Installer/install-ovpn-server.sh        ##
 ##                                                                           ##
 ## Script Author: Dylan A King                                               ##
-## Script Version: 1.0.3                                                     ##
-## Version Date: 11/26/2020                                                  ##
+## Script Version: 1.0.4-alpha                                               ##
+## Version Date: 11/30/2020                                                  ##
 ###############################################################################
 # This script runs commands on 2 systems and assumes you have a second system #
 # or VM to be used as a CA, and during the installation you will be asked to  #
