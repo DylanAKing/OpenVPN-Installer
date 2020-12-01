@@ -123,12 +123,12 @@ Please enter the username for the second system or VM:
 '
 read name
 
-#display the current ip information for all interfaces
-ip a
-
-echo For convenience above is the IP information for the Server system.
+#display the currently assigned ipv4 subnet addresses
+ip a |grep 'inet '
 
 echo '
+Above are the currently assigned ipv4 addresses of the Server.
+
 Please enter the ipv4 address of the first system/Server system:
 '
 read ipv4
@@ -137,15 +137,6 @@ echo '
 Please enter the ipv4 address of the second system/Certificate Authority system:
 '
 read ipv4ca
-
-##here we use ssh-copy-id to securely transfer the ssh-key we generated
-##earlier this enables heightened security when logging in with ssh
-##because you do not have to type a password to authenticate,
-##however, for this to be most effective password-based authentication
-##should be disabled on the systems using ssh-key based authentication.
-##disabling password-based authentication should prevent malicious 
-##actors from successfully brute-forcing the user's password. 
-##this script leaves password-based auth. enabled as a fail-safe.
 
 echo '
 SERVER INFO: Transferring the Servers SSH-Key to the Certificate Authority...
@@ -393,6 +384,9 @@ SERVER INFO: Backup saved at: /etc/ufw/before.rules.bak
 
 ##create a copy of "before.rules" in the same directory as a backup
 sudo cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
+
+#display helpful network info for user
+ip a
 
 echo '
 Please enter the name of the Server network interface you want to use:
