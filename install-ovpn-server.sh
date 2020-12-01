@@ -40,7 +40,7 @@ SERVER INFO: Updating Sever system and installing dependencies...
 '
 
 ##update host
-sudo apt update && sudo apt upgrade ssh openvpn easy-rsa ufw -y
+sudo pacman -Syu ssh openvpn easy-rsa ufw
 
 echo '
 SERVER INFO: Configuring Firewall...
@@ -102,7 +102,7 @@ SERVER INFO: Initializing Public Key Infrastructure...
 '
 
 ##initialize the pki
-./easyrsa init-pki
+easyrsa init-pki
 
 echo '
 INFO: Finished initial configuration of the server system.
@@ -173,7 +173,7 @@ CA INFO: Updating Certificate Authority and installing dependencies...
 '
 
 ##update the remote system and install Easy-RSA
-ssh -t "$name"@"$ipv4ca" 'sudo apt update; sudo apt upgrade easy-rsa ufw -y'
+ssh -t "$name"@"$ipv4ca" sudo pacman -Syu easy-rsa ufw
 
 echo '
 CA INFO: Setting up '~/easy-rsa' directory...
@@ -193,7 +193,7 @@ CA INFO: Initializing Certificate Authority Public Key Infrastructure...
 '
 
 ##change to the '~/easy-rsa' directory and create the pki infrastructure
-ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa init-pki'
+ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; easyrsa init-pki'
 
 ##this section creates a file called 'vars' in the '~/easy-rsa' directory
 ##and places the lines below into the file using a method known
@@ -220,7 +220,7 @@ CA INFO: Building Easy-RSA Certificate Authority
 '
 
 ##build the Certificate Authority on the remote system 
-ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa build-ca nopass'
+ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; easyrsa build-ca nopass'
 
 echo '
 INFO: Finished configuration of Certificate Authority...
@@ -240,7 +240,7 @@ SERVER INFO: Generating Server Public Key and Certificate Request...
 cd ~/easy-rsa
 
 ##generate the server`s request and key
-./easyrsa gen-req server nopass
+easyrsa gen-req server nopass
 
 echo '
 SERVER INFO: Copying Server Public Key to '/etc/openvpn/server/'...
@@ -261,7 +261,7 @@ CA INFO: Importing and Signing the Servers Request...
 '
 
 ##connect to the CA via SSH, import and sign the request
-ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa import-req /tmp/server.req server; ./easyrsa sign-req server server'
+ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; easyrsa import-req /tmp/server.req server; easyrsa sign-req server server'
 
 echo '
 CA INFO: Moving signed Certificates to the /tmp directory...
