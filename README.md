@@ -1,5 +1,4 @@
 # OpenVPN-Installer
-
 <noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> 
 ![Liberapay patrons](https://img.shields.io/liberapay/patrons/DylanAKing)
 ![Liberapay receiving](https://img.shields.io/liberapay/receives/DylanAKing)
