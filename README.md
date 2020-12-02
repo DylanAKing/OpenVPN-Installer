@@ -1,5 +1,10 @@
 # OpenVPN-Installer
-| Latest Release | 1.0.4-alpha |
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2e6459bb5b184250a1849a0e42aefa2f)](https://app.codacy.com/gh/DylanAKing/OpenVPN-Installer?utm_source=github.com&utm_medium=referral&utm_content=DylanAKing/OpenVPN-Installer&utm_campaign=Badge_Grade_Settings)
+
+<noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> 
+
+| Latest Release | 1.0.4-alpha |    
 | -------------- | ----- |
 
 Single script configuration of two clean servers/VMs into 1x OVPN server and 1x OVPN/EasyRSA certificate authority
@@ -34,17 +39,21 @@ Basic Requirements
     
     - LAN ip addresses of both systems
       
-    - Identity of the network interface to use on the Server System(ex: en0, eth0, ens18,...) 
+    - Identity of the network interface to use on the Server System (ex: en0, eth0, ens18,...) 
 
 Script Dependencies:
 
-    - EasyRSA v3.0.0+ (script was built using v3.0.6, but should be backward compatible to atleast v3.0.0)
+    - easy-rsa ((v3.0.0+) script was built using v3.0.6, but should be backward compatible to atleast v3.0.0)
     
-    - Sudo
+    - openvpn
+    
+    - sudo
     
     - ufw
     
     - gzip
+    
+    - ssh
 
 ## Installation Instructions
 
