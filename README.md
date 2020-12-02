@@ -1,7 +1,7 @@
 # OpenVPN-Installer
 
-<noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> <img src="https://img.shields.io/liberapay/patrons/DylanAKing.svg?logo=liberapay"> <img src="https://img.shields.io/liberapay/goal/DylanAKing.svg?logo=liberapay">
-
+<noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> 
+![Liberapay patrons](https://img.shields.io/liberapay/patrons/DylanAKing)
 
 | Latest Release | 1.0.4-alpha |    
 | -------------- | ----- |
