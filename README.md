@@ -1,5 +1,9 @@
 # OpenVPN-Installer
-| Latest Release | 1.0.4-alpha |
+
+<noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> <img src="https://img.shields.io/liberapay/patrons/DylanAKing.svg?logo=liberapay"> <img src="https://img.shields.io/liberapay/goal/DylanAKing.svg?logo=liberapay">
+
+
+| Latest Release | 1.0.4-alpha |    
 | -------------- | ----- |
 
 Single script configuration of two clean servers/VMs into 1x OVPN server and 1x OVPN/EasyRSA certificate authority
