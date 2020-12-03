@@ -12,7 +12,7 @@ Single script configuration of two clean servers/VMs into 1x OVPN server and 1x 
 The end result of running the install script is a functional [OpenVPN](https://openvpn.net) server ready to add clients, and issue .ovpn profiles,
 as well as accept connections, however it does require additional configuration to allow for access from outside of the LAN.
 
-### CLONING FROM MAIN MAY INTRODUCE SOME [BUGS](https://github.com/DylanAKing/OpenVPN-Installer/issues) THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE [LASTEST](https://github.com/DylanAKing/OpenVPN-Installer/releases/latest) VERSION FROM [RELEASES](https://github.com/DylanAKing/OpenVPN-Installer/releases)
+## CLONING FROM MAIN MAY INTRODUCE SOME [BUGS](https://github.com/DylanAKing/OpenVPN-Installer/issues) THAT HAVENT BEEN ADDRESSED YET PLEASE USE THE [LASTEST](https://github.com/DylanAKing/OpenVPN-Installer/releases/latest) VERSION FROM [RELEASES](https://github.com/DylanAKing/OpenVPN-Installer/releases)
 
 ## Linux Distro Compatibility
 | Distro          |  Version  |     Supported?     |
