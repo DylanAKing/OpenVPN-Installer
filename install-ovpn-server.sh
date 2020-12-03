@@ -20,11 +20,15 @@ echo "
 ###############################################################################
 # This script runs commands on 2 systems and assumes you have a second system #
 # or VM to be used as a CA, and during the installation you will be asked to  #
-# provide login credentials and ipv4 address of the second system, then this  #
-# script will automatically configure the second system over SSH              #
-# To complete this script you need to know:                                   #
+# provide the login credentials and ipv4 address of the second system, then   #
+# this script will automatically configure the second system over SSH         #
+#                                                                             #
+# To complete this script you need to know the following:                     #
+#                                                                             #
 # -IP Address of both systems                                                 #
+#                                                                             #
 # -Identity of the network interface you want to use (ex: eth0, ens18, ...)   #
+#                                                                             #
 # -Login Credentials for the desired user on the remote system                #
 #                                                                             #
 # If you dont know any of these press 'control+c' at anytime to exit          #
@@ -67,15 +71,15 @@ and anytime you wish to use it, you would need to type this password
 to unlock the ssh-key. We will generate 2 keys during this installation.
 one for the Server system and one for the CA system
 
-if you wish to lock your ssh-key and require a password to use it
-is recommended to set a passphrase below, this will cause this script
-to prompt the user multiple times for the passphrase through the 
-installation.
+If you wish to lock your ssh-key and require a password to use it,
+feel free to set a passphrase below, this will cause this script
+to prompt the user multiple times for the passphrase throughout 
+the installation.
 
 Alternatively, if you leave this blank, the script will run smoother
-using the ssh-keys to authenticate with the CA. Just remeber to keep 
-your ssh-keys safe and your Certificate Authority offline when not
-signing certificates
+using the just ssh-keys to authenticate with the CA. Just remember to
+keep your ssh-keys safe and your Certificate Authority offline when 
+not signing certificates
 '
 
 ##generate a strong 4096-bit ssh-key to be sent to the CA
@@ -170,15 +174,15 @@ and anytime you wish to use it, you would need to type this password
 to unlock the ssh-key. We already generated 1 key for the Server system
 earlier in this installation, we will now generate 1 key for the CA system
 
-If you wish to lock your ssh-key and require a password to use it
-is recommended to set a passphrase below, this will cause this script
+If you wish to lock your ssh-key and require a password to use it,
+feel free to set a passphrase below, this will cause this script
 to prompt the user multiple times for the passphrase throughout the 
 installation.
 
 Alternatively, if you leave this blank, the script will run smoother
-using the ssh-keys to authenticate with the CA. Just remeber to keep 
-your ssh-keys safe and your Certificate Authority offline when not
-signing certificates
+using the just ssh-keys to authenticate with the CA. Just remember to
+keep your ssh-keys safe and your Certificate Authority offline when 
+not signing certificates
 '
 
 ##generate a strong 4096 bit
