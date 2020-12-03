@@ -44,7 +44,7 @@ SERVER INFO: Updating Sever system and installing dependencies...
 '
 
 ##update host
-sudo apt update && sudo pat upgrade ssh openvpn easy-rsa ufw -y
+sudo apt update && sudo apt upgrade ssh openvpn easy-rsa ufw -y
 
 echo '
 SERVER INFO: Configuring Firewall...
@@ -203,7 +203,7 @@ CA INFO: Updating Certificate Authority and installing dependencies...
 ssh -t "$name"@"$ipv4ca" sudo apt update && sudo apt upgrade easy-rsa ufw -y
 
 echo '
-CA INFO: Setting up '~/easy-rsa' directory...
+CA INFO: Setting up "~/easy-rsa" directory...
 '
 
 ##make the '~/easy-rsa' directory
