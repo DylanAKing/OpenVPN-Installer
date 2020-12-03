@@ -15,16 +15,20 @@ echo "
 ## www.github.com/DylanAKing/OpenVPN-Installer/install-ovpn-server.sh        ##
 ##                                                                           ##
 ## Script Author: Dylan A King                                               ##
-## Script Version: 1.0.4-alpha                                               ##
+## Script Version: 1.0.4                                                     ##
 ## Version Date: 11/30/2020                                                  ##
 ###############################################################################
 # This script runs commands on 2 systems and assumes you have a second system #
 # or VM to be used as a CA, and during the installation you will be asked to  #
-# provide login credentials and ipv4 address of the second system, then this  #
-# script will automatically configure the second system over SSH              #
-# To complete this script you need to know:                                   #
+# provide the login credentials and ipv4 address of the second system, then   #
+# this script will automatically configure the second system over SSH         #
+#                                                                             #
+# To complete this script you need to know the following:                     #
+#                                                                             #
 # -IP Address of both systems                                                 #
+#                                                                             #
 # -Identity of the network interface you want to use (ex: eth0, ens18, ...)   #
+#                                                                             #
 # -Login Credentials for the desired user on the remote system                #
 #                                                                             #
 # If you dont know any of these press 'control+c' at anytime to exit          #
@@ -40,7 +44,7 @@ SERVER INFO: Updating Sever system and installing dependencies...
 '
 
 ##update host
-sudo apt update && sudo pat upgrade ssh openvpn easy-rsa ufw -y
+sudo apt update && sudo apt upgrade ssh openvpn easy-rsa ufw -y
 
 echo '
 SERVER INFO: Configuring Firewall...
@@ -60,6 +64,22 @@ sudo ufw allow 1194/udp
 
 echo '
 SERVER INFO: Generating the Server SSH-Key...
+
+You are about to be prompted to enter a passphrase below.
+This passphrase would be used to secure the generated ssh-key,
+and anytime you wish to use it, you would need to type this password
+to unlock the ssh-key. We will generate 2 keys during this installation.
+one for the Server system and one for the CA system
+
+If you wish to lock your ssh-key and require a password to use it,
+feel free to set a passphrase below, this will cause this script
+to prompt the user multiple times for the passphrase throughout 
+the installation.
+
+Alternatively, if you leave this blank, the script will run smoother
+using the just ssh-keys to authenticate with the CA. Just remember to
+keep your ssh-keys safe and your Certificate Authority offline when 
+not signing certificates
 '
 
 ##generate a strong 4096-bit ssh-key to be sent to the CA
@@ -147,6 +167,22 @@ ssh-copy-id "$name"@"$ipv4ca"
 
 echo '
 CA INFO: Generating the Certificate Authority SSH-Key...
+
+You are about to be prompted to enter a passphrase below.
+This passphrase would be used to secure the generated ssh-key,
+and anytime you wish to use it, you would need to type this password
+to unlock the ssh-key. We already generated 1 key for the Server system
+earlier in this installation, we will now generate 1 key for the CA system
+
+If you wish to lock your ssh-key and require a password to use it,
+feel free to set a passphrase below, this will cause this script
+to prompt the user multiple times for the passphrase throughout the 
+installation.
+
+Alternatively, if you leave this blank, the script will run smoother
+using the just ssh-keys to authenticate with the CA. Just remember to
+keep your ssh-keys safe and your Certificate Authority offline when 
+not signing certificates
 '
 
 ##generate a strong 4096 bit
@@ -167,7 +203,7 @@ CA INFO: Updating Certificate Authority and installing dependencies...
 ssh -t "$name"@"$ipv4ca" sudo apt update && sudo apt upgrade easy-rsa ufw -y
 
 echo '
-CA INFO: Setting up '~/easy-rsa' directory...
+CA INFO: Setting up "~/easy-rsa" directory...
 '
 
 ##make the '~/easy-rsa' directory
@@ -331,6 +367,9 @@ SERVER INFO: Creating Server Configuration file...
 ###
 
 sudo cat > /tmp/server.conf << EOF
+# This is a stripped down version of the original 'server.conf'
+# please reference ~/example-server.conf for more information on
+# these directives
 port 1194
 proto udp
 dev tun
@@ -399,10 +438,15 @@ SERVER INFO: Creating temporary file to hold new rules...
 
 ##add new rules to a temporary file that will be joined with /etc/ufe/before.rules using cat
 sudo cat > /tmp/temp.txt << EOF 
+###
+#this file was modified by OpenVPN-Installer (github.com/DylanAKing/OpenVPN-Installer)
+#the original before.rules was backed up and save at /etc/ufw/before.rules.bak
+#the following nat/postrouting rule was added:
 *nat
 :POSTROUTING ACCEPT [0:0]
 -A POSTROUTING -s 10.8.0.0/8 -o "$if" -j MASQUERADE
 COMMIT
+###
 EOF
 
 echo '
@@ -434,6 +478,10 @@ SERVER INFO: Editing '/etc/default/ufw'...
 
 ##create the new file in the /tmp directory
 sudo cat > /tmp/ufw << EOF
+#this file was modified by OpenVPN-Installer (github.com/DylanAKing/OpenVPN-Installer)
+#the original /etc/default/ufw was backed up and save at /etc/default/ufw.bak
+#the only change in this file other than stripping the comments was changing
+#the DEFAULT_FOWARD_POLICY="DROP" to DEFAULT_FOWARD_POLICY="ACCEPT"
 IPV6=yes
 DEFAULT_INPUT_POLICY="DROP"
 DEFAULT_OUTPUT_POLICY="ACCEPT"
@@ -462,6 +510,9 @@ SERVER INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
 sudo cat > ~/client-configs/base.conf << EOF
+# This is a stripped down version of the original 'base.conf'
+# please reference ~/example-base.conf for more information on
+# these directives
 client
 dev tun
 proto udp

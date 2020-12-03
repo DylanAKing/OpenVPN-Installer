@@ -88,7 +88,8 @@ If you are running Debian 10.6.0 there are a few things to verify before you run
       
     Replacing $username with the name on your non root user and placing this line
     below the corresponding line for ROOT.
-  Please inform me if there is a better way to achieve this.
+    Please inform me if there is a better way to achieve this.
+
   
     With these packages installed and a non-root user capable of using the "sudo" command,
     you are ready to run the installer, just follow the ubuntu instructions below.
