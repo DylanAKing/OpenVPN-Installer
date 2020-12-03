@@ -60,6 +60,22 @@ sudo ufw allow 1194/udp
 
 echo '
 SERVER INFO: Generating the Server SSH-Key...
+
+Below you are being prompted to enter a passphrase.
+this passphrase would be used to secure the generated ssh-key,
+and anytime you wish to use it, you would need to type this password
+to unlock the ssh-key. We will generate 2 keys during this installation.
+one for the Server system and one for the CA system
+
+if you wish to lock your ssh-key and require a password to use it
+is recommended to set a passphrase below, this will cause this script
+to prompt the user multiple times for the passphrase through the 
+installation.
+
+Alternatively, if you leave this blank, the script will run smoother
+using the ssh-keys to authenticate with the CA. Just remeber to keep 
+your ssh-keys safe and your Certificate Authority offline when not
+signing certificates
 '
 
 ##generate a strong 4096-bit ssh-key to be sent to the CA
@@ -147,6 +163,22 @@ ssh-copy-id "$name"@"$ipv4ca"
 
 echo '
 CA INFO: Generating the Certificate Authority SSH-Key...
+
+Below you are being prompted to enter a passphrase.
+this passphrase would be used to secure the generated ssh-key,
+and anytime you wish to use it, you would need to type this password
+to unlock the ssh-key. We already generated 1 key for the Server system
+earlier in this installation, we will now generate 1 key for the CA system
+
+If you wish to lock your ssh-key and require a password to use it
+is recommended to set a passphrase below, this will cause this script
+to prompt the user multiple times for the passphrase throughout the 
+installation.
+
+Alternatively, if you leave this blank, the script will run smoother
+using the ssh-keys to authenticate with the CA. Just remeber to keep 
+your ssh-keys safe and your Certificate Authority offline when not
+signing certificates
 '
 
 ##generate a strong 4096 bit
