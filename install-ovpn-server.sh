@@ -15,7 +15,7 @@ echo "
 ## www.github.com/DylanAKing/OpenVPN-Installer/install-ovpn-server.sh        ##
 ##                                                                           ##
 ## Script Author: Dylan A King                                               ##
-## Script Version: 1.0.4-alpha                                               ##
+## Script Version: 1.0.4                                                     ##
 ## Version Date: 11/30/2020                                                  ##
 ###############################################################################
 # This script runs commands on 2 systems and assumes you have a second system #
@@ -331,6 +331,9 @@ SERVER INFO: Creating Server Configuration file...
 ###
 
 sudo cat > /tmp/server.conf << EOF
+# This is a stripped down version of the original 'server.conf'
+# please reference ~/example-server.conf for more information on
+# these directives
 port 1194
 proto udp
 dev tun
@@ -399,10 +402,15 @@ SERVER INFO: Creating temporary file to hold new rules...
 
 ##add new rules to a temporary file that will be joined with /etc/ufe/before.rules using cat
 sudo cat > /tmp/temp.txt << EOF 
+###
+#this file was modified by OpenVPN-Installer (github.com/DylanAKing/OpenVPN-Installer)
+#the original before.rules was backed up and save at /etc/ufw/before.rules.bak
+#the following nat/postrouting rule was added:
 *nat
 :POSTROUTING ACCEPT [0:0]
 -A POSTROUTING -s 10.8.0.0/8 -o "$if" -j MASQUERADE
 COMMIT
+###
 EOF
 
 echo '
@@ -434,6 +442,10 @@ SERVER INFO: Editing '/etc/default/ufw'...
 
 ##create the new file in the /tmp directory
 sudo cat > /tmp/ufw << EOF
+#this file was modified by OpenVPN-Installer (github.com/DylanAKing/OpenVPN-Installer)
+#the original /etc/default/ufw was backed up and save at /etc/default/ufw.bak
+#the only change in this file other than stripping the comments was changing
+#the DEFAULT_FOWARD_POLICY="DROP" to DEFAULT_FOWARD_POLICY="ACCEPT"
 IPV6=yes
 DEFAULT_INPUT_POLICY="DROP"
 DEFAULT_OUTPUT_POLICY="ACCEPT"
@@ -462,6 +474,9 @@ SERVER INFO: Create the client base configuration...
 
 ##create the trimmed base.conf in '~/client-configs/'
 sudo cat > ~/client-configs/base.conf << EOF
+# This is a stripped down version of the original 'base.conf'
+# please reference ~/example-base.conf for more information on
+# these directives
 client
 dev tun
 proto udp
