@@ -2,7 +2,7 @@
 clear
 
 echo "
-  ____               __      _______  _   _      _____           _        _ _           
+   ____               __      _______  _   _      _____           _        _ _           
   / __ \              \ \    / /  __ \| \ | |    |_   _|         | |      | | |          
  | |  | |_ __   ___ _ _\ \  / /| |__) |  \| |______| |  _ __  ___| |_ __ _| | | ___ _ __ 
  | |  | | '_ \ / _ \ '_ \ \/ / |  ___/| . ' |______| | | '_ \/ __| __/ _' | | |/ _ \ '__|
@@ -15,7 +15,7 @@ echo "
 ## www.github.com/DylanAKing/OpenVPN-Installer/install-ovpn-server.sh        ##
 ##                                                                           ##
 ## Script Author: Dylan A King                                               ##
-## Script Version: 1.0.4                                                     ##
+## Script Version: 1.0.4-alpha2                                              ##
 ## Version Date: 11/30/2020                                                  ##
 ###############################################################################
 # This script runs commands on 2 systems and assumes you have a second system #
@@ -220,7 +220,7 @@ CA INFO: Initializing Certificate Authority Public Key Infrastructure...
 '
 
 ##change to the '~/easy-rsa' directory and create the pki infrastructure
-ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa init-pki'
+ssh "$name"@"$ipv4ca" cd ~/easy-rsa && ./easyrsa init-pki
 
 ##this section creates a file called 'vars' in the '~/easy-rsa' directory
 ##and places the lines below into the file using a method known
@@ -247,7 +247,7 @@ CA INFO: Building Easy-RSA Certificate Authority
 '
 
 ##build the Certificate Authority on the remote system 
-ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa build-ca nopass'
+ssh "$name"@"$ipv4ca" cd ~/easy-rsa && ./easyrsa build-ca nopass
 
 echo '
 INFO: Finished configuration of Certificate Authority...
@@ -288,7 +288,7 @@ CA INFO: Importing and Signing the Servers Request...
 '
 
 ##connect to the CA via SSH, import and sign the request
-ssh "$name"@"$ipv4ca" 'cd ~/easy-rsa; ./easyrsa import-req /tmp/server.req server; ./easyrsa sign-req server server'
+ssh "$name"@"$ipv4ca" cd ~/easy-rsa && ./easyrsa import-req /tmp/server.req server && ./easyrsa sign-req server server
 
 echo '
 CA INFO: Moving signed Certificates to the /tmp directory...
@@ -463,6 +463,9 @@ sudo mv /tmp/before.rules /etc/ufw/
 ##restore the appropriate permissions for /etc/ufw/before.rules
 sudo chmod 640 /etc/ufw/before.rules
 
+##restore the correct owner to the new file
+sudo chown root /etc/ufw/before.rules
+
 echo '
 SERVER INFO: Backing up /etc/default/ufw before modification...
 
@@ -497,6 +500,9 @@ sudo mv /tmp/ufw /etc/default/
 
 ##restore the appropriate permissions for /etc/default/ufw
 sudo chmod 644 /etc/default/ufw
+
+##restore the correct owner to the new file
+sudo chown root /etc/default/ufw
 
 ##make '~/client-configs/files' directory
 mkdir ~/client-configs/files
