@@ -1,8 +1,4 @@
-# OpenVPN-Installer
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2e6459bb5b184250a1849a0e42aefa2f)](https://app.codacy.com/gh/DylanAKing/OpenVPN-Installer?utm_source=github.com&utm_medium=referral&utm_content=DylanAKing/OpenVPN-Installer&utm_campaign=Badge_Grade_Settings)
-
-<noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> 
+# OpenVPN-Installer <noscript><a href="https://liberapay.com/DylanAKing/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript> [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2e6459bb5b184250a1849a0e42aefa2f)](https://app.codacy.com/gh/DylanAKing/OpenVPN-Installer?utm_source=github.com&utm_medium=referral&utm_content=DylanAKing/OpenVPN-Installer&utm_campaign=Badge_Grade_Settings)
 
 | Latest Release | 1.0.4-alpha |    
 | -------------- | ----- |
