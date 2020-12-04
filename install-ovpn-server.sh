@@ -463,6 +463,9 @@ sudo mv /tmp/before.rules /etc/ufw/
 ##restore the appropriate permissions for /etc/ufw/before.rules
 sudo chmod 640 /etc/ufw/before.rules
 
+##restore the correct owner to the new file
+sudo chown root /etc/ufw/before.rules
+
 echo '
 SERVER INFO: Backing up /etc/default/ufw before modification...
 
@@ -497,6 +500,9 @@ sudo mv /tmp/ufw /etc/default/
 
 ##restore the appropriate permissions for /etc/default/ufw
 sudo chmod 644 /etc/default/ufw
+
+##restore the correct owner to the new file
+sudo chown root /etc/default/ufw
 
 ##make '~/client-configs/files' directory
 mkdir ~/client-configs/files
