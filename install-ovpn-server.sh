@@ -147,6 +147,7 @@ read name
 ip a |grep 'inet '
 
 echo '
+
 Above are the currently assigned ipv4 addresses of the Server.
 
 Please enter the ipv4 address of the first system/Server system:
@@ -419,6 +420,7 @@ echo '
 SERVER INFO: Backing up ufw/before.rules before modification
 
 SERVER INFO: Backup saved at: /etc/ufw/before.rules.bak
+
 '
 
 ##create a copy of "before.rules" in the same directory as a backup
@@ -428,6 +430,7 @@ sudo cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 ip a
 
 echo '
+
 Please enter the name of the Server network interface you want to use:
 '
 read if
@@ -545,7 +548,7 @@ sudo ufw enable
 echo '
 SERVER INFO: Starting OpenVPN Server...
 '
-
+sleep 3
 #start OpenVPN Server
 sudo systemctl start openvpn-server@server.service
 
