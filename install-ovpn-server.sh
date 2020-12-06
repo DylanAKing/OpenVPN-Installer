@@ -518,14 +518,33 @@ SERVER INFO: Create the client base configuration...
 '
 
 ##create the trimmed base.conf in '~/client-configs/'
-sudo cat > ~/client-configs/base.conf << EOF
+#sudo cat > ~/client-configs/base.conf << EOF
+echo '
 # This is a stripped down version of the original 'base.conf'
 # please reference ~/example-base.conf for more information on
 # these directives
 client
 dev tun
 proto udp
-remote $ipv4 1194
+remote $ipv4 1194' > ~/client-configs/base.conf
+
+echo '
+Would you like to add additional remote servers to the client
+configuration file? this will allow for load balancing and access
+across the web. (yes/no)'
+read answer
+
+if [ $answer = "yes"] 
+then
+    echo "Please enter the ipv4 address or domain name.(ex: x.x.x.x, www.example.com)"
+    read ip_domain
+    echo "Please enter the port number you would like to use.(Default is udp port 1194)"
+    read port
+    echo "remote "$ip_domain" "$port""|tee -a ~/client-configs/base.conf
+else
+fi
+
+echo '
 resolve-retry infinite
 user nobody
 group nobody
@@ -536,7 +555,7 @@ cipher AES-256-GCM
 auth sha256
 key-direction 1
 verb 3
-EOF
+'| tee -a ~/client-configs/base.conf
 
 echo '
 SERVER INFO: Enabling Firewall...
