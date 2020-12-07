@@ -549,6 +549,7 @@ then
     read port
     echo "remote "$ip_domain" "$port""|tee -a ~/client-configs/base.conf
 else
+    fi
 fi
 
 echo '
