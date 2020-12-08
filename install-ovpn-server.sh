@@ -63,7 +63,7 @@ What type of connection would you like to use?
 read protocol
 proto=''
 defaultPort=''
-if [ "$protocol" == 'tcp']; 
+if [ "$protocol" == 'tcp' ];
   then
     echo 'Would you like to use the default TCP port? (443)
     (yes/no)'
@@ -93,7 +93,7 @@ else
       defaultPort='yes'
     elif [ "$answer" = 'no' ];
       then
-        echo 'Please specify the desired TCP port'
+        echo 'Please specify the desired UDP port'
         read udpPort
         sudo ufw allow "$udpPort"/udp
         defaultPort='no'
@@ -106,7 +106,7 @@ you will likely need port 80 opened on the firewall.
 Would you like to open port 80 on the firewall now?'
 read p80answer
 
-if [ "p80answer" == 'yes'];
+if [ "p80answer" == 'yes' ];
   then
     sudo ufw allow 80
 fi
