@@ -50,17 +50,38 @@ echo '
 SERVER INFO: Configuring Firewall...
 '
 
-##allow Openssh through the firewall if installed
+##allow Openssh through the firewall
 sudo ufw allow openssh
 
-##allow default port 1194/UDP through the firewall
-sudo ufw allow 1194/udp
+echo 'Openvpn has the ability to use the TCP protocol for connections.
+by default this script sets up a UDP protocol connection, 
+if you would like to use TCP instead we will need to allow
+port 443/tcp through the firewall.
 
-##allow port 80 through the firewall
-#sudo ufw allow 80
+What type of connection would you like to use? 
+(enter "tcp" to use TCP, any other input will use defaults)'
+read protocol
 
-##allow port 443/tcp through the firewall
-#sudo ufw allow 443/tcp
+if [ "$protocol" == 'tcp']; 
+  then
+    ##allow port 443 over TCP through the firewall
+    sudo ufw allow 443/tcp
+    protocol = tcp
+else
+  ##allow port 1194 over UDP through the firewall
+  sudo ufw allow 1194/udp
+fi
+
+echo 'If you would like to access the vpn across the internet
+and you wish you use LetsEncrypt to get your tls/ssl certificates
+you will likely need port 80 opened on the firewall.
+Would you like to open port 80 on the firewall now?'
+read p80answer
+
+if [ "p80answer" == 'yes'];
+  then
+    sudo ufw allow 80
+fi
 
 echo '
 SERVER INFO: Generating the Server SSH-Key...
