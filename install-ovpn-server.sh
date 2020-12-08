@@ -61,15 +61,43 @@ port 443/tcp through the firewall.
 What type of connection would you like to use? 
 (enter "tcp" to use TCP, any other input will use defaults)'
 read protocol
-
+proto=''
+defaultPort=''
 if [ "$protocol" == 'tcp']; 
   then
-    ##allow port 443 over TCP through the firewall
-    sudo ufw allow 443/tcp
-    protocol = tcp
+    echo 'Would you like to use the default TCP port? (443)
+    (yes/no)'
+    read answer
+    if [ "$answer" == 'yes' ];
+      then  
+      ##allow port 443 over TCP through the firewall
+      sudo ufw allow 443/tcp
+      proto='tcp'
+      defaultPort='yes'     
+    elif [ "$answer" = 'no' ];
+      then
+        echo 'Please specify the desired TCP port'
+        read tcpPort
+        sudo ufw allow "$tcpPort"/tcp
+        defaultPort='no'
+    fi
 else
-  ##allow port 1194 over UDP through the firewall
-  sudo ufw allow 1194/udp
+  echo 'Would you like to use the default UDP port? (1194)
+    (yes/no)'
+    read answer
+    if [ "$answer" == 'yes' ];
+      then  
+      ##allow port 1194 over UDP through the firewall
+      sudo ufw allow 1194/udp
+      proto='udp'
+      defaultPort='yes'
+    elif [ "$answer" = 'no' ];
+      then
+        echo 'Please specify the desired TCP port'
+        read udpPort
+        sudo ufw allow "$udpPort"/udp
+        defaultPort='no'
+    fi
 fi
 
 echo 'If you would like to access the vpn across the internet
@@ -394,14 +422,35 @@ sleep 1
 ##this server.conf only contains the active directives indicated
 ##on the following lines
 ###
+touch /tmp/server.conf
 
-sudo cat > /tmp/server.conf << EOF
-# This is a stripped down version of the original 'server.conf'
+echo '# This is a stripped down version of the original 'server.conf'
 # please reference ~/example-server.conf for more information on
-# these directives
-port 1194
-proto udp
-dev tun
+# these directives' > /tmp/server.conf
+
+if [ "$proto" == 'udp' ];
+  then
+    if [ "$defaultPort" == 'no' ];
+      then
+        echo 'port '"$udpPort"|tee -a ~/tmp/server.conf
+        echo 'proto udp'|tee -a ~/tmp/server.conf
+    else
+      echo 'port 1194
+      proto udp'|tee -a ~/tmp/server.conf
+    fi
+elif [ "$proto" == 'tcp' ];
+  then
+    if [ "$defaultPort" == 'no' ];
+      then
+        echo 'port '"$tcpPort"|tee -a ~/tmp/server.conf
+        echo 'proto tcp'|tee -a ~/tmp/server.conf
+    else
+      echo 'port 443
+      proto tcp'|tee -a ~/tmp/server.conf
+    fi
+fi
+
+echo 'dev tun
 ca ca.crt
 cert server.crt
 key server.key
@@ -423,8 +472,7 @@ persist-key
 persist-tun
 status /var/log/openvpn/openvpn-status.log
 verb 3
-explicit-exit-notify 1
-EOF
+explicit-exit-notify 1'|tee -a /tmp/server.conf
 
 ###
 ##move the new server.conf file from '/tmp' to '/etc/openvpn'
@@ -461,7 +509,7 @@ echo '
 
 Please enter the name of the Server network interface you want to use:
 '
-read if
+read interface
 
 echo '
 SERVER INFO: Creating temporary file to hold new rules...
@@ -475,7 +523,7 @@ sudo cat > /tmp/temp.txt << EOF
 #the following nat/postrouting rule was added:
 *nat
 :POSTROUTING ACCEPT [0:0]
--A POSTROUTING -s 10.8.0.0/8 -o "$if" -j MASQUERADE
+-A POSTROUTING -s 10.8.0.0/8 -o "$interface" -j MASQUERADE
 COMMIT
 ###
 EOF
@@ -546,32 +594,51 @@ SERVER INFO: Create the client base configuration...
 '
 sleep 1
 ##create the trimmed base.conf in '~/client-configs/'
-#sudo cat > ~/client-configs/base.conf << EOF
 echo '
 # This is a stripped down version of the original 'base.conf'
 # please reference ~/example-base.conf for more information on
 # these directives
 client
-dev tun
-proto udp
-remote '"$ipv4"' 1194' > ~/client-configs/base.conf
+dev tun' > ~/client-configs/base.conf
+
+if [ "$proto" == 'udp' ];
+  then
+    echo 'proto udp'
+    if [ "$defaultPort" == 'no' ];
+      then 
+        echo 'remote '"$ipv4"' '"$udpPort"|tee -a ~/client-configs/base.conf
+    else
+      echo 'remote '"$ipv4"' 1194'|tee -a ~/client-configs/base.conf
+    fi
+elif [ "$proto" == 'tcp' ];
+  then
+    echo 'proto tcp'
+    if [ "$defaultPort" == 'no' ];
+      then
+        echo 'remote '"$ipv4"' '"$tcpPort"|tee -a ~/client-configs/base.conf
+    else
+      echo 'remote '"$ipv4"' 443'|tee -a ~/client-configs/base.conf
+    fi
+fi
 
 echo '
 Would you like to add additional remote servers to the client
 configuration file? this will allow for load balancing and access
 across the web. (type "yes" to add another server, any other inout
 will continue with default "local only" access)'
-read answer
+read addServer
 
-while [ "$answer" = 'yes' ]; 
+while [ "$addServer" = 'yes' ]; 
 do
-  echo "Please enter the ipv4 address or domain name.(ex: x.x.x.x, www.example.com)"
+  echo "Please enter the ipv4 address or domain name.
+  (ex: x.x.x.x, www.example.com)"
   read ip_domain
-  echo "Please enter the port number you would like to use.(Default is udp port 1194)"
+  echo "Please enter the port number you would like to use.
+  (Defaults: UDP port 1194, TCP port 443)"
   read port
   echo remote "$ip_domain" "$port"|tee -a ~/client-configs/base.conf
   echo "Would you like to add another server? (yes/no)"
-  read answer
+  read addServer
 done
 
 echo 'resolve-retry infinite
