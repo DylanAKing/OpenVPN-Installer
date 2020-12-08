@@ -432,21 +432,21 @@ if [ "$proto" == 'udp' ];
   then
     if [ "$defaultPort" == 'no' ];
       then
-        echo 'port '"$udpPort"|tee -a ~/tmp/server.conf
-        echo 'proto udp'|tee -a ~/tmp/server.conf
+        echo 'port '"$udpPort"|tee -a /tmp/server.conf
+        echo 'proto udp'|tee -a /tmp/server.conf
     else
       echo 'port 1194
-      proto udp'|tee -a ~/tmp/server.conf
+      proto udp'|tee -a /tmp/server.conf
     fi
 elif [ "$proto" == 'tcp' ];
   then
     if [ "$defaultPort" == 'no' ];
       then
-        echo 'port '"$tcpPort"|tee -a ~/tmp/server.conf
-        echo 'proto tcp'|tee -a ~/tmp/server.conf
+        echo 'port '"$tcpPort"|tee -a /tmp/server.conf
+        echo 'proto tcp'|tee -a /tmp/server.conf
     else
       echo 'port 443
-      proto tcp'|tee -a ~/tmp/server.conf
+      proto tcp'|tee -a /tmp/server.conf
     fi
 fi
 
