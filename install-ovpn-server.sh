@@ -435,8 +435,8 @@ if [ "$proto" == 'udp' ];
         echo 'port '"$udpPort"|tee -a /tmp/server.conf
         echo 'proto udp'|tee -a /tmp/server.conf
     else
-      echo 'port 1194
-      proto udp'|tee -a /tmp/server.conf
+      echo 'port 1194'|tee -a /tmp/server.conf
+      echo 'proto udp'|tee -a /tmp/server.conf
     fi
 elif [ "$proto" == 'tcp' ];
   then
@@ -445,8 +445,8 @@ elif [ "$proto" == 'tcp' ];
         echo 'port '"$tcpPort"|tee -a /tmp/server.conf
         echo 'proto tcp'|tee -a /tmp/server.conf
     else
-      echo 'port 443
-      proto tcp'|tee -a /tmp/server.conf
+      echo 'port 443'|tee -a /tmp/server.conf
+      echo 'proto tcp'|tee -a /tmp/server.conf
     fi
 fi
 
@@ -471,9 +471,11 @@ group nogroup
 persist-key
 persist-tun
 status /var/log/openvpn/openvpn-status.log
-verb 3
-explicit-exit-notify 1'|tee -a /tmp/server.conf
-
+verb 3'|tee -a /tmp/server.conf
+if [ "$proto" == 'udp' ];
+  then
+    echo 'explicit-exit-notify 1'|tee -a /tmp/server.conf
+fi
 ###
 ##move the new server.conf file from '/tmp' to '/etc/openvpn'
 sudo mv /tmp/server.conf /etc/openvpn/server/
