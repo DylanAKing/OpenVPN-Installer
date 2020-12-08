@@ -548,7 +548,7 @@ do
   read ip_domain
   echo "Please enter the port number you would like to use.(Default is udp port 1194)"
   read port
-  echo "remote "$ip_domain" "$port""|tee -a ~/client-configs/base.conf
+  echo remote $ip_domain $port|tee -a ~/client-configs/base.conf
   echo "Would you like to add another server? (yes/no)"
   read answer
 done
