@@ -553,8 +553,7 @@ do
   read answer
 done
 
-echo '
-resolve-retry infinite
+echo 'resolve-retry infinite
 user nobody
 group nobody
 persist-key
@@ -563,8 +562,7 @@ remote-cert-tls server
 cipher AES-256-GCM
 auth sha256
 key-direction 1
-verb 3
-'| tee -a ~/client-configs/base.conf
+verb 3'| tee -a ~/client-configs/base.conf
 
 echo '
 SERVER INFO: Enabling Firewall...
