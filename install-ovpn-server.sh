@@ -538,16 +538,17 @@ remote '"$ipv4"' 1194' > ~/client-configs/base.conf
 echo '
 Would you like to add additional remote servers to the client
 configuration file? this will allow for load balancing and access
-across the web. (yes/no)'
+across the web. (type "yes" to add another server, any other inout
+will continue with default "local only" access)'
 read answer
 
-if [ $answer = yes] 
-then
-   echo "Please enter the ipv4 address or domain name.(ex: x.x.x.x, www.example.com)"
-   read ip_domain
-   echo "Please enter the port number you would like to use.(Default is udp port 1194)"
-   read port
-   echo "remote "$ip_domain" "$port""|tee -a ~/client-configs/base.conf
+if [ "$answer" = "yes" ]; 
+  then
+    echo "Please enter the ipv4 address or domain name.(ex: x.x.x.x, www.example.com)"
+    read ip_domain
+    echo "Please enter the port number you would like to use.(Default is udp port 1194)"
+    read port
+    echo "remote "$ip_domain" "$port""|tee -a ~/client-configs/base.conf
 fi
 
 echo '
