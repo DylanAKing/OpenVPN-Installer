@@ -40,15 +40,13 @@ Please enter the username of your non-root user:
 read usrname
 
 echo '
-SERVER INFO: Updating Sever system and installing dependencies...
-'
+SERVER INFO: Updating Sever system and installing dependencies...'
 
 ##update host
 sudo apt update && sudo apt upgrade ssh openvpn easy-rsa ufw -y
 
 echo '
-SERVER INFO: Configuring Firewall...
-'
+SERVER INFO: Configuring Firewall...'
 
 ##allow Openssh through the firewall
 sudo ufw allow openssh
@@ -103,7 +101,8 @@ fi
 echo 'If you would like to access the vpn across the internet
 and you wish you use LetsEncrypt to get your tls/ssl certificates
 you will likely need port 80 opened on the firewall.
-Would you like to open port 80 on the firewall now?'
+Would you like to open port 80 on the firewall now?
+(yes/no)'
 read p80answer
 
 if [ "$p80answer" == 'yes' ];
@@ -128,15 +127,13 @@ the installation.
 Alternatively, if you leave this blank, the script will run smoother
 using the just ssh-keys to authenticate with the CA. Just remember to
 keep your ssh-keys safe and your Certificate Authority offline when 
-not signing certificates
-'
+not signing certificates'
 
 ##generate a strong 4096-bit ssh-key to be sent to the CA
 ssh-keygen -b 4096
 
 echo '
-SERVER INFO: Setting up Easy-RSA directory structure...
-'
+SERVER INFO: Setting up Easy-RSA directory structure...'
 sleep 1
 
 ##make root directory for easy-rsa
@@ -155,8 +152,7 @@ chmod 700 ~/easy-rsa
 cd ~/easy-rsa
 
 echo '
-SERVER INFO: Creating the Servers vars file...
-'
+SERVER INFO: Creating the Servers vars file...'
 sleep 1
 
 ##create the 'vars' file for the server
@@ -169,16 +165,14 @@ EOF
 mv /tmp/vars ~/easy-rsa/
 
 echo '
-SERVER INFO: Initializing Public Key Infrastructure...
-'
+SERVER INFO: Initializing Public Key Infrastructure...'
 sleep 1
 
 ##initialize the pki
 ./easyrsa init-pki
 
 echo '
-INFO: Finished initial configuration of the server system.
-'
+INFO: Finished initial configuration of the server system.'
 sleep 1
 ###############################################################
 
@@ -187,8 +181,7 @@ sleep 1
 ##by connecting to a second ubuntu 20.04 system via SSH
 
 echo '
-INFO: Starting Certificate Authority configuration...
-'
+INFO: Starting Certificate Authority configuration...'
 sleep 1
 
 echo '
@@ -210,8 +203,7 @@ Please enter the ipv4 address of the second system/Certificate Authority system:
 read ipv4ca
 
 echo '
-SERVER INFO: Transferring the Servers SSH-Key to the Certificate Authority...
-'
+SERVER INFO: Transferring the Servers SSH-Key to the Certificate Authority...'
 
 sleep 1
 
@@ -237,29 +229,25 @@ using the just ssh-keys to authenticate with the CA. Just remember to
 keep your ssh-keys safe and your Certificate Authority offline when 
 not signing certificates
 
-You can press enter in all three of the following prompts to use defaults.
-'
+You can press enter in all three of the following prompts to use defaults.'
 
 ##generate a strong 4096 bit
 ssh "$name"@"$ipv4ca" ssh-keygen -b 4096
 
 echo '
-CA INFO: Transferring Certificate Authority SSH-Key to the Server...
-'
+CA INFO: Transferring Certificate Authority SSH-Key to the Server...'
 sleep 1
 ##transfer the CA's ssh-key to the Server
 ssh "$name"@"$ipv4ca" ssh-copy-id "$usrname"@"$ipv4"
 
 echo '
-CA INFO: Updating Certificate Authority and installing dependencies...
-'
+CA INFO: Updating Certificate Authority and installing dependencies...'
 sleep 1
 ##update the remote system and install Easy-RSA
 ssh -t "$name"@"$ipv4ca" "sudo apt update && sudo apt upgrade easy-rsa ufw -y"
 
 echo '
-CA INFO: Setting up "~/easy-rsa" directory...
-'
+CA INFO: Setting up "~/easy-rsa" directory...'
 sleep 1
 ##make the '~/easy-rsa' directory
 ssh "$name"@"$ipv4ca" mkdir ~/easy-rsa
@@ -271,8 +259,7 @@ ssh "$name"@"$ipv4ca" ln -s /usr/share/easy-rsa/* ~/easy-rsa
 ssh "$name"@"$ipv4ca" chmod 700 ~/easy-rsa
 
 echo '
-CA INFO: Initializing Certificate Authority Public Key Infrastructure...
-'
+CA INFO: Initializing Certificate Authority Public Key Infrastructure...'
 sleep 1
 ##change to the '~/easy-rsa' directory and create the pki infrastructure
 ssh "$name"@"$ipv4ca" "cd ~/easy-rsa && ./easyrsa init-pki"
@@ -283,8 +270,7 @@ ssh "$name"@"$ipv4ca" "cd ~/easy-rsa && ./easyrsa init-pki"
 ##want just do not leave them blank.
 
 echo '
-CA INFO: Creating Certificate Authority vars file...
-'
+CA INFO: Creating Certificate Authority vars file...'
 sleep 1
 ssh "$name"@"$ipv4ca" cat > ~/easy-rsa/vars << EOF
 set_var EASYRSA_REQ_COUNTRY    "US"
@@ -298,15 +284,13 @@ set_var EASYRSA_DIGEST         "sha512"
 EOF
 
 echo '
-CA INFO: Building Easy-RSA Certificate Authority
-'
+CA INFO: Building Easy-RSA Certificate Authority'
 sleep 1
 ##build the Certificate Authority on the remote system 
 ssh "$name"@"$ipv4ca" "cd ~/easy-rsa && ./easyrsa build-ca nopass"
 
 echo '
-INFO: Finished configuration of Certificate Authority...
-'
+INFO: Finished configuration of Certificate Authority...'
 sleep 1
 #############################################################
 
@@ -315,8 +299,7 @@ sleep 1
 ##with the configured CA server
 
 echo '
-SERVER INFO: Generating Server Public Key and Certificate Request...
-'
+SERVER INFO: Generating Server Public Key and Certificate Request...'
 sleep 1
 
 ##change to the '~/easy-rsa' directory
@@ -326,29 +309,25 @@ cd ~/easy-rsa
 ./easyrsa gen-req server nopass
 
 echo '
-SERVER INFO: Copying Server Public Key to '/etc/openvpn/server/'...
-'
+SERVER INFO: Copying Server Public Key to '/etc/openvpn/server/'...'
 sleep 1
 ##copy server key to the '/etc/openvpn/server' directory 
 sudo cp ~/easy-rsa/pki/private/server.key /etc/openvpn/server/
 
 echo '
-SERVER INFO: Transferring the Servers Request to the Certificate Authority...
-'
+SERVER INFO: Transferring the Servers Request to the Certificate Authority...'
 sleep 1
 ##send the server.req file to the Certificate Authority for signing
 scp ~/easy-rsa/pki/reqs/server.req "$name"@"$ipv4ca":/tmp/
 
 echo '
-CA INFO: Importing and Signing the Servers Request...
-'
+CA INFO: Importing and Signing the Servers Request...'
 sleep 1
 ##connect to the CA via SSH, import and sign the request
 ssh "$name"@"$ipv4ca" "cd ~/easy-rsa && ./easyrsa import-req /tmp/server.req server && ./easyrsa sign-req server server"
 
 echo '
-CA INFO: Moving signed Certificates to the /tmp directory...
-'
+CA INFO: Moving signed Certificates to the /tmp directory...'
 sleep 1
 ##connect to the CA via SSH and copy the new server certificate to the /tmp/ directory
 ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/issued/server.crt /tmp/
@@ -357,8 +336,7 @@ ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/issued/server.crt /tmp/
 ssh "$name"@"$ipv4ca" cp ~/easy-rsa/pki/ca.crt /tmp/
 
 echo '
-SERVER INFO: Retreiving the signed Certificates from the Certificate Authority...
-'
+SERVER INFO: Retreiving the signed Certificates from the Certificate Authority...'
 
 ##using SCP to retrieve the Server Certificate and CA Certificate from the CAs /tmp directory 
 scp "$name"@"$ipv4ca":/tmp/*.crt /tmp/
@@ -376,8 +354,7 @@ sudo chmod -R 700 ~/client-configs
 sudo cp /etc/openvpn/server/ca.crt ~/client-configs/keys
 
 echo '
-SERVER INFO: Generating TLS-Crypt Pre-Shared Key...
-'
+SERVER INFO: Generating TLS-Crypt Pre-Shared Key...'
 sleep 1
 
 #move to `/easy-rsa' directory
@@ -415,8 +392,7 @@ sudo gunzip ~/server.conf.gz
 mv ~/server.conf ~/example-server.conf
 
 echo '
-SERVER INFO: Creating Server Configuration file...
-'
+SERVER INFO: Creating Server Configuration file...'
 sleep 1
 ##create the trimmed server.conf that will be used by the server
 ##this server.conf only contains the active directives indicated
@@ -481,15 +457,13 @@ fi
 sudo mv /tmp/server.conf /etc/openvpn/server/
 
 echo '
-SERVER INFO: Adjusting IP-Fowarding Policy...
-'
+SERVER INFO: Adjusting IP-Fowarding Policy...'
 sleep 1
 ##append the following line to '/etc/sysctl.conf' adjusting the ip fowarding policy
 echo "net.ipv4.ip_forward = 1"|sudo tee -a /etc/sysctl.conf
 
 echo '
-SERVER INFO: Applying updated IP-Fowarding Policy to the current session...
-'
+SERVER INFO: Applying updated IP-Fowarding Policy to the current session...'
 sleep 1
 ##load the new ip forwaing values for the current session
 sudo sysctl -p
@@ -498,7 +472,6 @@ echo '
 SERVER INFO: Backing up ufw/before.rules before modification
 
 SERVER INFO: Backup saved at: /etc/ufw/before.rules.bak
-
 '
 sleep 1
 ##create a copy of "before.rules" in the same directory as a backup
@@ -508,14 +481,11 @@ sudo cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 ip a
 
 echo '
-
-Please enter the name of the Server network interface you want to use:
-'
+Please enter the name of the Server network interface you want to use:'
 read interface
 
 echo '
-SERVER INFO: Creating temporary file to hold new rules...
-'
+SERVER INFO: Creating temporary file to hold new rules...'
 sleep 1
 ##add new rules to a temporary file that will be joined with /etc/ufe/before.rules using cat
 sudo cat > /tmp/temp.txt << EOF 
@@ -531,8 +501,7 @@ COMMIT
 EOF
 
 echo '
-SERVER INFO: Adding new rules to '/etc/ufw/before.rules'...
-'
+SERVER INFO: Adding new rules to '/etc/ufw/before.rules'...'
 sleep 1
 ##use cat to join the before.rules to the temperary file containing the new rules
 ##this results in the contents of the first file appearing at the start of the second
@@ -550,15 +519,13 @@ sudo chown root /etc/ufw/before.rules
 echo '
 SERVER INFO: Backing up /etc/default/ufw before modification...
 
-SERVER INFO: Backup stored at: /etc/default/ufw.bak
-'
+SERVER INFO: Backup stored at: /etc/default/ufw.bak'
 sleep 1
 ##backup /etc/default/ufw
 sudo cp /etc/default/ufw /etc/default/ufw.bak
 
 echo '
-SERVER INFO: Editing '/etc/default/ufw'...
-'
+SERVER INFO: Editing '/etc/default/ufw'...'
 sleep 1
 ##create the new file in the /tmp directory
 sudo cat > /tmp/ufw << EOF
@@ -592,8 +559,7 @@ mkdir ~/client-configs/files
 cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/example-base.conf
 
 echo '
-SERVER INFO: Create the client base configuration...
-'
+SERVER INFO: Create the client base configuration...'
 sleep 1
 ##create the trimmed base.conf in '~/client-configs/'
 echo '
@@ -655,15 +621,13 @@ key-direction 1
 verb 3'| tee -a ~/client-configs/base.conf
 
 echo '
-SERVER INFO: Enabling Firewall...
-'
+SERVER INFO: Enabling Firewall...'
 sleep 1
 ##enable firewall on startup
 sudo ufw enable
 
 echo '
-SERVER INFO: Starting OpenVPN Server...
-'
+SERVER INFO: Starting OpenVPN Server...'
 sleep 1
 #start OpenVPN Server
 sudo systemctl start openvpn-server@server.service
@@ -672,8 +636,7 @@ sudo systemctl start openvpn-server@server.service
 #sudo systemctl enable openvpn-server@server.service
 
 echo '
-SERVER INFO: Making Management scripts Executable...
-'
+SERVER INFO: Making Management scripts Executable...'
 sleep 1
 #make the managment scripts executable
 chmod +x ~/OpenVPN-Installer*/OpenVPN-Management-Scripts/*.sh
