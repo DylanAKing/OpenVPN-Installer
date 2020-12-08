@@ -106,7 +106,7 @@ you will likely need port 80 opened on the firewall.
 Would you like to open port 80 on the firewall now?'
 read p80answer
 
-if [ "p80answer" == 'yes' ];
+if [ "$p80answer" == 'yes' ];
   then
     sudo ufw allow 80
 fi
