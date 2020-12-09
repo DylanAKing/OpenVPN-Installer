@@ -110,30 +110,34 @@ if [ "$p80answer" == 'yes' ];
     sudo ufw allow 80
 fi
 
-echo '
-SERVER INFO: Generating the Server SSH-Key...
-
-You are about to be prompted to enter a passphrase below.
-This passphrase would be used to secure the generated ssh-key,
-and anytime you wish to use it, you would need to type this password
-to unlock the ssh-key. We will generate 2 keys during this installation.
-one for the Server system and one for the CA system
-
-If you wish to lock your ssh-key and require a password to use it,
-feel free to set a passphrase below, this will cause this script
-to prompt the user multiple times for the passphrase throughout 
-the installation.
-
-Alternatively, if you leave this blank, the script will run smoother
-using the just ssh-keys to authenticate with the CA. Just remember to
-keep your ssh-keys safe and your Certificate Authority offline when 
-not signing certificates'
 
 if [ -e /home/"$usrname"/.ssh/id_rsa.pub ]
   then
     echo 'SERVER INFO: The server system already has an ssh key. 
     skipping new key generation to avoid overwriting to original.'
 else
+  echo '
+  SERVER INFO: Generating the Server SSH-Key...
+
+  You are about to be prompted to enter a passphrase below.
+  This passphrase would be used to secure the generated ssh-key,
+  and anytime you wish to use it, you would need to type this password
+  to unlock the ssh-key. We will generate 2 keys during this installation.
+  one for the Server system and one for the CA system
+
+  If you wish to lock your ssh-key and require a password to use it,
+  feel free to set a passphrase below, this will cause this script
+  to prompt the user multiple times for the passphrase throughout 
+  the installation.
+
+  Alternatively, if you leave this blank, the script will run smoother
+  using the just ssh-keys to authenticate with the CA. Just remember to
+  keep your ssh-keys safe and your Certificate Authority offline when 
+  not signing certificates
+  
+  You can press enter in all three of the following prompts to use defaults.
+  '
+
   ##generate a strong 4096-bit ssh-key to be sent to the CA
   ssh-keygen -b 4096
 fi
@@ -187,10 +191,8 @@ sleep 1
 ##by connecting to a second ubuntu 20.04 system via SSH
 
 echo '
-INFO: Starting Certificate Authority configuration...'
-sleep 1
+INFO: Starting Certificate Authority configuration...
 
-echo '
 Please enter the username for the second system or VM:'
 read name
 
@@ -507,7 +509,7 @@ COMMIT
 EOF
 
 echo '
-SERVER INFO: Adding new rules to '/etc/ufw/before.rules'...'
+SERVER INFO: Adding new rules to "/etc/ufw/before.rules"...'
 sleep 1
 ##use cat to join the before.rules to the temperary file containing the new rules
 ##this results in the contents of the first file appearing at the start of the second
