@@ -129,8 +129,14 @@ using the just ssh-keys to authenticate with the CA. Just remember to
 keep your ssh-keys safe and your Certificate Authority offline when 
 not signing certificates'
 
-##generate a strong 4096-bit ssh-key to be sent to the CA
-ssh-keygen -b 4096
+if [ -e /home/"$usrname"/.ssh/id_rsa.pub ]
+  then
+    echo 'SERVER INFO: The server system already has an ssh key. 
+    skipping new key generation to avoid overwriting to original.'
+else
+  ##generate a strong 4096-bit ssh-key to be sent to the CA
+  ssh-keygen -b 4096
+fi
 
 echo '
 SERVER INFO: Setting up Easy-RSA directory structure...'
